@@ -18,8 +18,7 @@ In an HTML file:
 Optional template parameters:
   1. either a user object or userId (if neither -> default avatar)
   2. css class string, where you can optionally specify 'large' and 'rounded' or 'circle'  
-  NOTE: for now, if you want to use 'large', 'rounded', and/or 'circle', you must include 'avatar' also. Otherwise, you can specify a custom class string to override the default style with your own CSS.
-  e.g. `{{> avatar}}`, or `{{> avatar user=user}}`, or `{{> avatar user=this cssClass='avatar large circle'`, etc.
+  NOTE: for now, if you want to use 'large', 'rounded', and/or 'circle', you must include 'avatar' also. Otherwise, you can specify a custom class string to override the default style with your own CSS. (e.g. `{{> avatar}}`, or `{{> avatar user=user}}`, or `{{> avatar userId=this.userId cssClass='avatar large circle'`, or `{{> avatar user=this.user cssClass='<your custom css string>'`, etc.)
 
 How the package chooses an avatar
 ---------------------------------
@@ -29,7 +28,7 @@ Given a user object or userId, Avatar will retrieve the user's image with the fo
   3. Gravatar
   4. More to come...
 
-Eventually, the plan is to add more UI to allow the user to select which one he/she wants or upload a new image.
+Eventually, the plan is to add more UI to allow the user to select which one he/she wants, or upload a new image.
 
 Credits
 -------
