@@ -10,7 +10,7 @@ Package.onUse(function(api) {
   api.use(['templating', 'stylus', 'jparker:gravatar'], ['client']);
   api.addFiles(
   	[
-	  	'bengott:avatar.js',
+	  	'helpers.js',
 	  	'default.png',
 	  	'template/avatar.html',
 	  	'template/avatar.js',
