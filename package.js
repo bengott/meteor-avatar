@@ -1,5 +1,5 @@
 Package.describe({
-  name: "Avatar",
+  name: "bengott:avatar",
   summary: "Consolidated user avatar template (twitter, facebook, gravatar, etc.)",
   version: "0.0.1",
   git: "https://github.com/bengott/meteor-avatar"
