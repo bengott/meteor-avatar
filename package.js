@@ -9,13 +9,13 @@ Package.onUse(function(api) {
   api.versionsFrom('METEOR@0.9.3');
   api.use(['templating', 'stylus', 'jparker:gravatar@0.2.0'], ['client']);
   api.addFiles(
-  	[
-	  	'helpers.js',
-	  	'default.png',
-	  	'template/avatar.html',
-	  	'template/avatar.js',
-	  	'template/avatar.styl'
-  	],
-  	'client'
+    [
+      'helpers.js',
+      'default.png',
+      'template/avatar.html',
+      'template/avatar.js',
+      'template/avatar.styl'
+    ],
+    'client'
   );
 });
