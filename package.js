@@ -7,7 +7,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('METEOR@0.9.3');
-  api.use(['templating', 'stylus', 'jparker:gravatar@0.2.0'], ['client']);
+  api.use(['templating', 'stylus', 'jparker:crypto-md5'], ['client']);
   api.addFiles(
     [
       'helpers.js',
@@ -18,4 +18,5 @@ Package.onUse(function(api) {
     ],
     'client'
   );
+  api.export('Avatar');
 });
