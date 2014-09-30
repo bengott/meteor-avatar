@@ -7,7 +7,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('METEOR@0.9.3');
-  api.use(['templating', 'stylus', 'jparker:gravatar'], ['client']);
+  api.use(['templating', 'stylus', 'jparker:gravatar@0.2.0'], ['client']);
   api.addFiles(
   	[
 	  	'helpers.js',
