@@ -19,7 +19,7 @@ In an HTML file:
 Optional template parameters:
   1. Either a user object or userId (if neither -> default avatar).
   2. CSS class string, where you can optionally specify 'large' and 'rounded' or 'circle'. Or you can specify a custom class string to use instead.  
-(e.g. `{{> avatar user=user class='<your custom css string>'`)
+(e.g. `{{> avatar user=user class='<your custom css string>'}}`)
 
 How the package chooses an avatar
 ---------------------------------
