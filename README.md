@@ -1,5 +1,5 @@
 ![logo](https://raw.githubusercontent.com/bengott/images/master/avatar-logo.png)
-==================================================================================
+================================================================================
 
 Consolidated Avatar Template Package for Meteor
 
@@ -14,12 +14,12 @@ Usage
 -----
 In an HTML file:
 ```
-{{> avatar (user=<user> || userId=<userId>) (cssClass='avatar (large) (rounded || circle)')}}
+{{> avatar (user=<user> || userId=<userId>) (class='(large) (rounded || circle)')}}
 ```
 Optional template parameters:
-  1. either a user object or userId (if neither -> default avatar)
-  2. css class string, where you can optionally specify 'large' and 'rounded' or 'circle'  
-  NOTE: for now, if you want to use 'large', 'rounded', and/or 'circle', you must include 'avatar' also. Otherwise, you can specify a custom class string to override the default style with your own CSS. (e.g. `{{> avatar}}`, or `{{> avatar user=user}}`, or `{{> avatar userId=this.userId cssClass='avatar large circle'`, or `{{> avatar user=this.user cssClass='<your custom css string>'`, etc.)
+  1. Either a user object or userId (if neither -> default avatar).
+  2. CSS class string, where you can optionally specify 'large' and 'rounded' or 'circle'. Or you can specify a custom class string to use instead.  
+(e.g. `{{> avatar user=user class='<your custom css string>'`)
 
 How the package chooses an avatar
 ---------------------------------
