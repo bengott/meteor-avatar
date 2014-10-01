@@ -1,6 +1,5 @@
-![avatar](https://raw.githubusercontent.com/bengott/images/master/avatar.png)
-Avatar
-======
+![logo](https://raw.githubusercontent.com/bengott/images/master/avatar-logo.png)
+==================================================================================
 
 Consolidated Avatar Template Package for Meteor
 
