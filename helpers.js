@@ -19,6 +19,9 @@ Avatar = {
         // use larger image (~200x200)
         return 'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=large';
       }
+      else if (svc === 'instagram') {
+        return user.services.instagram.profile_picture;
+      }
       else if (svc === 'none') {
         var options = {
           s: 200, // use 200x200 like twitter and facebook above (might be useful later)
@@ -37,6 +40,7 @@ Avatar = {
 var getService = function (user) {
   if      (user.services && user.services.twitter)  { return 'twitter'; }
   else if (user.services && user.services.facebook) { return 'facebook'; }
+  else if (user.services && user.services.instagram) { return 'instagram'; }
   else                                              { return 'none'; }
 };
 
