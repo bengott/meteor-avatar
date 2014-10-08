@@ -12,7 +12,7 @@ Avatar = {
   // Get the url of the user's avatar, either from twitter, facebook, or gravatar (for now)
   getUrl: function (user) {
     if (user) {
-      var svc = getService(user);      
+      var svc = getService(user);
       if (svc === 'twitter') {
         // use larger image (200x200 is smallest custom option)
         return user.services.twitter.profile_image_url.replace('_normal.', '_200x200.');
