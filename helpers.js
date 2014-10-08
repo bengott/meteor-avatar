@@ -12,7 +12,7 @@ Avatar = {
   // Get the url of the user's avatar, either from twitter, facebook, or gravatar (for now)
   getUrl: function (user) {
     if (user) {
-      var svc = getService(user);
+      var svc = getService(user);      
       if (svc === 'twitter') {
         // use larger image (200x200 is smallest custom option)
         return user.services.twitter.profile_image_url.replace('_normal.', '_200x200.');
@@ -48,6 +48,8 @@ Avatar = {
 var getService = function (user) {
   if      (user.services && user.services.twitter)  { return 'twitter'; }
   else if (user.services && user.services.facebook) { return 'facebook'; }
+  else if (user.services && user.services.google) { return 'google'; }
+  else if (user.services && user.services.github) { return 'github'; }
   else                                              { return 'none'; }
 };
 
@@ -59,7 +61,7 @@ var getEmailHash = function (user) {
     emailHash = user[Avatar.options.emailHashProperty];
   } else if (user.emails) {
     var email = user.emails[0].address; // TODO: try all emails
-    emailHash = Gravatar.hash(email)
+    emailHash = Gravatar.hash(email);
   }
   return emailHash;
 };

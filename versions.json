@@ -1,16 +1,20 @@
 {
   "dependencies": [
     [
-      "blaze",
+      "base64",
       "1.0.0"
+    ],
+    [
+      "blaze",
+      "2.0.1"
     ],
     [
       "deps",
-      "1.0.0"
+      "1.0.4"
     ],
     [
       "ejson",
-      "1.0.0"
+      "1.0.3"
     ],
     [
       "geojson-utils",
@@ -46,11 +50,11 @@
     ],
     [
       "minimongo",
-      "1.0.0"
+      "1.0.3"
     ],
     [
       "observe-sequence",
-      "1.0.1"
+      "1.0.2"
     ],
     [
       "ordered-dict",
@@ -61,12 +65,20 @@
       "1.0.0"
     ],
     [
+      "reactive-var",
+      "1.0.2"
+    ],
+    [
       "stylus",
       "1.0.4"
     ],
     [
       "templating",
       "1.0.7"
+    ],
+    [
+      "tracker",
+      "1.0.2"
     ],
     [
       "underscore",

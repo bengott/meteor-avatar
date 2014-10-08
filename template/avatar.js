@@ -15,7 +15,7 @@ Template.avatar.helpers({
     var input, output;
     // Support {{cssClass}} for backward compatibility
     input = (this.cssClass && !this.class) ? this.cssClass : this.class;
-    console.log(input);
+    console.log('LOL');
     if (input) {
       var mods = ['large', 'rounded', 'circle'];
       var classes = input.split(' ');
