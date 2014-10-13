@@ -4,7 +4,9 @@ Avatar = {
   options: {
     // If defined (e.g. from a startup config file in your app), this property on the user object
     // will be used for retrieving gravatars (useful when user emails are not published) 
-    emailHashProperty: ''
+    emailHashProperty: '',
+    // If defined (e.g. from a startup config file in your app), this property will replace default avatar url
+    defaultAvatar: ''
   },
 
   // Get the url of the user's avatar, either from twitter, facebook, or gravatar (for now)
@@ -19,6 +21,12 @@ Avatar = {
         // use larger image (~200x200)
         return 'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=large';
       }
+      else if (svc === 'google') {        
+        return user.services.google.picture;
+      }
+      else if (svc === 'github') {        
+        return 'http://avatars.githubusercontent.com/u/' + user.services.github.id + '?v=2';
+      }            
       else if (svc === 'none') {
         var options = {
           s: 200, // use 200x200 like twitter and facebook above (might be useful later)
@@ -28,6 +36,9 @@ Avatar = {
       }
     }
     // If all else fails, default image
+    if (Avatar.options.defaultAvatar) {
+      return Avatar.options.defaultAvatar;
+    }
     return '/packages/bengott_avatar/default.png';
   }
 };
@@ -37,6 +48,8 @@ Avatar = {
 var getService = function (user) {
   if      (user.services && user.services.twitter)  { return 'twitter'; }
   else if (user.services && user.services.facebook) { return 'facebook'; }
+  else if (user.services && user.services.google) { return 'google'; }
+  else if (user.services && user.services.github) { return 'github'; }
   else                                              { return 'none'; }
 };
 
@@ -48,7 +61,7 @@ var getEmailHash = function (user) {
     emailHash = user[Avatar.options.emailHashProperty];
   } else if (user.emails) {
     var email = user.emails[0].address; // TODO: try all emails
-    emailHash = Gravatar.hash(email)
+    emailHash = Gravatar.hash(email);
   }
   return emailHash;
 };
