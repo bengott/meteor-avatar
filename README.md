@@ -26,13 +26,16 @@ How the package chooses an avatar
 Given a user object or userId, Avatar will retrieve the user's image with the following priority:
   1. Twitter
   2. Facebook
-  3. Gravatar
-  4. More to come...
+  3. Google
+  4. GitHub
+  5. Instagram
+  6. Gravatar
+  7. More to come...
 
 Eventually, the plan is to add more UI to allow the user to select which one he/she wants, or upload a new image.
 
 Credits
 -------
 - [Sacha Greif](@SachaG), for [suggesting the idea on crater.io](http://crater.io/posts/BfMsgzs5AzEdp6Byu)
-- [Shai Alon](@shaialon), for [contributing the Gravatar functionality to  Telescope](https://github.com/TelescopeJS/Telescope/pull/436) that [I later modified](https://github.com/TelescopeJS/Telescope/pull/438)
+- [Shai Alon](@shaialon), for [contributing the Gravatar functionality to Telescope](https://github.com/TelescopeJS/Telescope/pull/436) that [I later modified](https://github.com/TelescopeJS/Telescope/pull/438)
 - [Jérémie Parker](@p-j), for providing the [gravatar package](https://github.com/p-j/meteor-gravatar)
