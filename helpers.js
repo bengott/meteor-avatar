@@ -24,9 +24,12 @@ Avatar = {
       else if (svc === 'google') {        
         return user.services.google.picture;
       }
-      else if (svc === 'github') {        
+      else if (svc === 'github') {
         return 'http://avatars.githubusercontent.com/u/' + user.services.github.id + '?v=2';
-      }            
+      }
+      else if (svc === 'instagram') {
+        return user.services.instagram.profile_picture;
+      }
       else if (svc === 'none') {
         var options = {
           s: 200, // use 200x200 like twitter and facebook above (might be useful later)
@@ -50,6 +53,7 @@ var getService = function (user) {
   else if (user.services && user.services.facebook) { return 'facebook'; }
   else if (user.services && user.services.google) { return 'google'; }
   else if (user.services && user.services.github) { return 'github'; }
+  else if (user.services && user.services.instagram) { return 'instagram'; }
   else                                              { return 'none'; }
 };
 
