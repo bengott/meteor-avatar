@@ -32,10 +32,10 @@ The package exports a global `Avatar` object which has a property named `options
 
 Example usage:
 ```
-Avatar.options({
+Avatar.options = {
   emailHashProperty: 'email_hash',
   defaultAvatarUrl: 'http://example.com/images/defaultAvatar.png'
-})
+};
 ```
 
 How the package chooses an avatar
