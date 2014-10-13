@@ -10,13 +10,14 @@ Package.onUse(function(api) {
   api.use(['templating', 'underscore', 'stylus', 'jparker:crypto-md5@0.1.1'], ['client']);
   api.addFiles(
     [
+      'export.js',
       'helpers.js',
       'default.png',
       'template/avatar.html',
       'template/avatar.js',
       'template/avatar.styl'
     ],
-    'client'
+    ['client']
   );
   api.export('Avatar');
 });
