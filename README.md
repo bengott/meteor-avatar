@@ -10,6 +10,8 @@ In your Meteor project directory, run:
 ```
 $ meteor add bengott:avatar
 ```
+Of course, you also need to add the 'accounts-<service>' packages for the services you're using (e.g. accounts-twitter) and accounts-ui or something similar in order to add login functionality to your app.
+
 Usage 
 -----
 In an HTML file:
