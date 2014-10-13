@@ -23,6 +23,21 @@ Optional template parameters:
   2. CSS class string, where you can optionally specify 'large' and 'rounded' or 'circle'. Or you can specify a custom class string to use instead.  
 (e.g. `{{> avatar user=user class='<your custom css string>'}}`)
 
+Global Configuration Options
+----------------------------
+The package exports a global `Avatar` object which has a property named `options` (also an object). If defined (e.g. from a startup config file in your app), these options override default functionality.
+
+  - `emailHashProperty`: This property on the user object will be used for retrieving gravatars (useful when user emails are not published)
+  - `defaultAvatarUrl`: This will replace the standard default avatar URL. It can be a relative path (e.g. '/images/defaultAvatar.png')
+
+Example usage:
+```
+Avatar.options({
+  emailHashProperty: 'email_hash',
+  defaultAvatarUrl: 'http://example.com/images/defaultAvatar.png'
+})
+```
+
 How the package chooses an avatar
 ---------------------------------
 Given a user object or userId, Avatar will retrieve the user's image with the following priority:
