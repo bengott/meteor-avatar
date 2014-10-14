@@ -49,17 +49,17 @@ Avatar = {
         url = user.services.instagram.profile_picture;
       }
       else if (svc === 'none') {
-        // NOTE: Gravatar's default (d:) option won't work when your app is running on localhost
-        // and you're using either the standard default URL or a custom options.defaultAvatarUrl
+        // NOTE: Gravatar's default option won't work when your app is running on localhost and
+        // you're using either the standard default URL or a custom options.defaultAvatarUrl
         // that is a relative path (e.g. '/images/defaultAvatar.png'). If you'd like a temporary
         // URL to use for dev purposes, you can uncomment the following line.
         // defaultUrl = 'https://raw.githubusercontent.com/bengott/meteor-avatar/master/default.png'
         var options = {
-          d: defaultUrl,
-          s: 200, // use 200x200 like twitter and facebook above (might be useful later)
+          default: defaultUrl,
+          size: 200, // use 200x200 like twitter and facebook above (might be useful later)
           secure: location.protocol === 'https:'
         };
-        url = Gravatar.imageUrl(getEmailHash(user), options);
+        url = Gravatar.imageUrl(getEmailOrHash(user), options);
       }
     } else {
       url = defaultUrl;
