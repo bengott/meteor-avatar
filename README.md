@@ -51,6 +51,8 @@ Given a user object or userId, Avatar will retrieve the user's image with the fo
 
 Eventually, the plan is to add more UI to allow the user to select which one he/she wants, or upload a new image.
 
+NOTE: Gravatar's default option requires a publicly accessible URL, so it won't work when your app is running on localhost and you're using either the standard default URL or a custom `defaultAvatarUrl` that is a relative path (e.g. '/images/defaultAvatar.png').
+
 Credits
 -------
 - [Sacha Greif](https://github.com/SachaG), for [suggesting the idea on crater.io](http://crater.io/posts/BfMsgzs5AzEdp6Byu)
