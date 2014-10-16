@@ -8,10 +8,16 @@ Avatar = {
     // This property on the user object will be used for retrieving gravatars
     // (useful when user emails are not published)
     emailHashProperty: '',
-    
+
     // This will replace the standard default avatar URL. It can be a relative
     // path (e.g. '/images/defaultAvatar.png')
-    defaultAvatarUrl: ''
+    defaultAvatarUrl: '',
+
+    // Any additional parameters for the standard gravatar. Options are available
+    // at https://secure.gravatar.com/site/implement/images/#default-image
+    // Default avatar url can also be passed in this way: { default: 'url-here' }
+    // example: { d: 'identicon', r: 'pg', f: 'y' }
+    defaultAvatarParams: {}
   },
 
   // Get the url of the user's avatar
@@ -19,11 +25,8 @@ Avatar = {
     
     var url, defaultUrl;
 
-    if (Avatar.options.defaultAvatarUrl) {
-      defaultUrl = Avatar.options.defaultAvatarUrl;
-    } else {
-      defaultUrl = '/packages/bengott_avatar/default.png';
-    }
+    defaultUrl = Avatar.options.defaultAvatarUrl || '/packages/bengott_avatar/default.png';
+
     // If it's a relative path, complete the URL (prepend the origin)
     if (defaultUrl.charAt(0) === '/' && defaultUrl.charAt(1) !== '/') {
       defaultUrl = location.origin + defaultUrl;
@@ -54,11 +57,21 @@ Avatar = {
         // using either the standard default URL or a custom defaultAvatarUrl
         // that is a relative path (e.g. '/images/defaultAvatar.png').
         var options = {
-          default: defaultUrl,
           size: 200, // use 200x200 like twitter and facebook above (might be useful later)
           secure: location.protocol === 'https:'
         };
-        url = Gravatar.imageUrl(getEmailOrHash(user), options);
+
+        var params = Avatar.options.defaultAvatarParams;
+
+        // defaultAvatarUrl takes precedence over params
+        if (!Avatar.options.defaultAvatarUrl && !_.isEmpty(params))
+          options = _.extend(options, params);
+        else
+          options.default = defaultUrl;
+
+        user = getEmailOrHash(user); 
+        // error if emailHashProperty is set but value is undefined
+        url = user && Gravatar.imageUrl(user, options) || defaultUrl;
       }
     } else {
       url = defaultUrl;
