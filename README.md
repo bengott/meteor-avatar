@@ -29,6 +29,7 @@ The package exports a global `Avatar` object which has a property named `options
 
   - `emailHashProperty`: This property on the user object will be used for retrieving gravatars (useful when user emails are not published)
   - `defaultAvatarUrl`: This will replace the standard default avatar URL. It can be a relative path (e.g. '/images/defaultAvatar.png')
+  - `gravatarDefault`: Gravatar default option to use (overrides default avatar). Options are available at: https://secure.gravatar.com/site/implement/images/#default-image
 
 Example usage:
 ```
