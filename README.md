@@ -28,8 +28,8 @@ Global Configuration Options
 The package exports a global `Avatar` object which has a property named `options` (also an object). If defined (e.g. from a startup config file in your app), these options override default functionality.
 
   - `emailHashProperty`: This property on the user object will be used for retrieving gravatars (useful when user emails are not published)
-  - `defaultAvatarUrl`: This will replace the standard default avatar URL. It can be a relative path (e.g. '/images/defaultAvatar.png')
-  - `gravatarDefault`: Gravatar default option to use (overrides default avatar). Options are available at: https://secure.gravatar.com/site/implement/images/#default-image
+  - `defaultAvatarUrl`: This will replace the standard default avatar URL. It can be a relative path (e.g. 'images/defaultAvatar.png')
+  - `gravatarDefault`: Gravatar default option to use (overrides default avatar URL). Options are available at: https://secure.gravatar.com/site/implement/images/#default-image
 
 Example usage:
 ```
@@ -38,6 +38,7 @@ Avatar.options = {
   defaultAvatarUrl: 'http://example.com/images/defaultAvatar.png'
 };
 ```
+NOTE: Gravatar's default option requires a publicly accessible URL, so it won't work when your app is running on localhost and you're using either the standard default URL or a custom `defaultAvatarUrl` that is a relative path.
 
 How the package chooses an avatar
 ---------------------------------
@@ -50,9 +51,7 @@ Given a user object or userId, Avatar will retrieve the user's image with the fo
   6. Gravatar
   7. More to come...
 
-Eventually, the plan is to add more UI to allow the user to select which one he/she wants, or upload a new image.
-
-NOTE: Gravatar's default option requires a publicly accessible URL, so it won't work when your app is running on localhost and you're using either the standard default URL or a custom `defaultAvatarUrl` that is a relative path (e.g. '/images/defaultAvatar.png').
+Eventually, the plan is to add more UI to allow the user to select which one he/she wants or upload a new image.
 
 Credits
 -------

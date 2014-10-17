@@ -10,10 +10,10 @@ Avatar = {
     emailHashProperty: '',
 
     // This will replace the standard default avatar URL. It can be a relative
-    // path (e.g. '/images/defaultAvatar.png').
+    // path (relative to website's base URL, e.g. 'images/defaultAvatar.png').
     defaultAvatarUrl: '',
 
-    // Gravatar default option to use (overrides default avatar)
+    // Gravatar default option to use (overrides default avatar URL)
     // Options are available at:
     // https://secure.gravatar.com/site/implement/images/#default-image
     gravatarDefault: ''
@@ -21,14 +21,17 @@ Avatar = {
 
   // Get the url of the user's avatar
   getUrl: function (user) {
-    
-    var url, defaultUrl; 
-    
-    defaultUrl = Avatar.options.defaultAvatarUrl || '/packages/bengott_avatar/default.png';
 
-    // If it's a relative path, complete the URL (prepend the origin)
-    if (defaultUrl.charAt(0) === '/' && defaultUrl.charAt(1) !== '/') {
-      defaultUrl = location.origin + defaultUrl;
+    var url, defaultUrl;
+
+    defaultUrl = Avatar.options.defaultAvatarUrl || 'packages/bengott_avatar/default.png';
+
+    // If it's a relative path (no '//' anywhere), complete the URL
+    if (defaultUrl.indexOf('//') === -1) {
+      // Strip starting slash if it exists
+      if (defaultUrl.charAt(0) === '/') defaultUrl = defaultUrl.slice(1); 
+      // Put it all together
+      defaultUrl = window.location.origin + '/' + defaultUrl;
     }
 
     if (user) {
@@ -61,7 +64,7 @@ Avatar = {
           // NOTE: Gravatar's default option requires a publicly accessible URL,
           // so it won't work when your app is running on localhost and you're
           // using either the standard default URL or a custom defaultAvatarUrl
-          // that is a relative path (e.g. '/images/defaultAvatar.png').
+          // that is a relative path (e.g. 'images/defaultAvatar.png').
           default: gravatarDefault || defaultUrl,
           size: 200, // use 200x200 like twitter and facebook above (might be useful later)
           secure: location.protocol === 'https:'
