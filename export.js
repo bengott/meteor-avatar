@@ -13,24 +13,25 @@ Avatar = {
     // path (e.g. '/images/defaultAvatar.png')
     defaultAvatarUrl: '',
 
-    // Any additional parameters for the standard gravatar. Options are available
-    // at https://secure.gravatar.com/site/implement/images/#default-image
-    // Default avatar url can also be passed in this way: { default: 'url-here' }
-    // example: { d: 'identicon', r: 'pg', f: 'y' }
-    defaultAvatarParams: {}
+    // Gravatar image type to use. Options are available at 
+    // https://secure.gravatar.com/site/implement/images/#default-image
+    gravatarDefault: ''
   },
 
   // Get the url of the user's avatar
   getUrl: function (user) {
     
-    var url, defaultUrl;
+    var url, defaultUrl, gravatarDefault;
+    var validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank'];
 
+    if (_.contains(validGravatars, Avatar.options.gravatarDefault))
+      gravatarDefault = Avatar.options.gravatarDefault;
+    
     defaultUrl = Avatar.options.defaultAvatarUrl || '/packages/bengott_avatar/default.png';
 
     // If it's a relative path, complete the URL (prepend the origin)
-    if (defaultUrl.charAt(0) === '/' && defaultUrl.charAt(1) !== '/') {
+    if (defaultUrl.charAt(0) === '/' && defaultUrl.charAt(1) !== '/')
       defaultUrl = location.origin + defaultUrl;
-    }
 
     if (user) {
       var svc = getService(user);
@@ -57,17 +58,10 @@ Avatar = {
         // using either the standard default URL or a custom defaultAvatarUrl
         // that is a relative path (e.g. '/images/defaultAvatar.png').
         var options = {
+          default: gravatarDefault || defaultUrl,
           size: 200, // use 200x200 like twitter and facebook above (might be useful later)
           secure: location.protocol === 'https:'
         };
-
-        var params = Avatar.options.defaultAvatarParams;
-
-        // defaultAvatarUrl takes precedence over params
-        if (!Avatar.options.defaultAvatarUrl && !_.isEmpty(params))
-          options = _.extend(options, params);
-        else
-          options.default = defaultUrl;
 
         user = getEmailOrHash(user); 
         // error if emailHashProperty is set but value is undefined
