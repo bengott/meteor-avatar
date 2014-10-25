@@ -16,22 +16,46 @@ Avatar = {
     // Gravatar default option to use (overrides default avatar URL)
     // Options are available at:
     // https://secure.gravatar.com/site/implement/images/#default-image
-    gravatarDefault: ''
+    gravatarDefault: '',
+
+    // Server base URL. If calling Avatar.getUrl() from the server, this property
+    // is REQUIRED (because server can't call window.location to figure it out).
+    // Also, if this property is defined, it will effectively override the code that
+    // tries to automatically determine your website's base URL.
+    serverBaseUrl: ''
   },
 
   // Get the url of the user's avatar
   getUrl: function (user) {
 
-    var url, defaultUrl;
+    var url, defaultUrl, baseUrl;
 
     defaultUrl = Avatar.options.defaultAvatarUrl || 'packages/bengott_avatar/default.png';
 
     // If it's a relative path (no '//' anywhere), complete the URL
     if (defaultUrl.indexOf('//') === -1) {
+      
       // Strip starting slash if it exists
-      if (defaultUrl.charAt(0) === '/') defaultUrl = defaultUrl.slice(1); 
+      if (defaultUrl.charAt(0) === '/') defaultUrl = defaultUrl.slice(1);
+      
+      // Get the base URL
+      if (Avatar.options.serverBaseUrl) {
+        baseUrl = Avatar.options.serverBaseUrl;
+        // Strip ending slash if it exists
+        if (baseUrl.charAt(baseUrl.length - 1) === '/') baseUrl = baseUrl.slice(0, -1);
+      } else {
+        // If on the client (web browser), figure out the base URL automatically
+        if (Meteor.isClient) {
+          baseUrl = window.location.origin;
+        }
+        // The server will not abide this, man. Warn via console.
+        else if (Meteor.isServer) {
+          console.warn('[bengott:avatar] Cannot generate default avatar URL: ' +
+                       'serverBaseUrl option is not defined.');
+        }
+      }
       // Put it all together
-      defaultUrl = window.location.origin + '/' + defaultUrl;
+      defaultUrl = baseUrl + '/' + defaultUrl;
     }
 
     if (user) {
