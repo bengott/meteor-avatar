@@ -30,12 +30,15 @@ The package exports a global `Avatar` object which has a property named `options
   - `emailHashProperty`: This property on the user object will be used for retrieving gravatars (useful when user emails are not published)
   - `defaultAvatarUrl`: This will replace the standard default avatar URL. It can be a relative path (e.g. 'images/defaultAvatar.png')
   - `gravatarDefault`: Gravatar default option to use (overrides default avatar URL). Options are available at: https://secure.gravatar.com/site/implement/images/#default-image
+  - `serverBaseUrl`: Server base URL. By default, the package tries to automatically determine your website's base URL. This option effectively overrides that. If calling Avatar.getUrl() from the server, this property is REQUIRED (because server can't call window.location to figure it out).
 
 Example usage:
 ```
 Avatar.options = {
   emailHashProperty: 'email_hash',
-  defaultAvatarUrl: 'http://example.com/images/defaultAvatar.png'
+  defaultAvatarUrl: 'http://example.com/images/defaultAvatar.png',
+  // gravatarDefault: 'identicon',
+  serverBaseUrl: 'http://example.com'
 };
 ```
 NOTE: Gravatar's default option requires a publicly accessible URL, so it won't work when your app is running on localhost and you're using either the standard default URL or a custom `defaultAvatarUrl` that is a relative path.
@@ -58,3 +61,4 @@ Credits
 - [Sacha Greif](https://github.com/SachaG), for [suggesting the idea on crater.io](http://crater.io/posts/BfMsgzs5AzEdp6Byu)
 - [Shai Alon](https://github.com/shaialon), for [contributing the Gravatar functionality to Telescope](https://github.com/TelescopeJS/Telescope/pull/436) that [I later modified](https://github.com/TelescopeJS/Telescope/pull/438)
 - [Jérémie Parker](https://github.com/p-j), for providing the [gravatar package](https://github.com/p-j/meteor-gravatar)
+- [Everyone who has contributed](https://github.com/bengott/meteor-avatar/graphs/contributors) to this project. :)
