@@ -1,10 +1,10 @@
 // Avatar object to be exported
 Avatar = {
-  
+
   // If defined (e.g. from a startup config file in your app), these options
   // override default functionality
   options: {
-    
+
     // This property on the user object will be used for retrieving gravatars
     // (useful when user emails are not published).
     emailHashProperty: '',
@@ -34,17 +34,17 @@ Avatar = {
 
     // If it's a relative path (no '//' anywhere), complete the URL
     if (defaultUrl.indexOf('//') === -1) {
-      
+
       // Strip starting slash if it exists
       if (defaultUrl.charAt(0) === '/') defaultUrl = defaultUrl.slice(1);
-      
+
       // Get the base URL
       if (Avatar.options.serverBaseUrl) {
         baseUrl = Avatar.options.serverBaseUrl;
         // Strip ending slash if it exists
         if (baseUrl.charAt(baseUrl.length - 1) === '/') baseUrl = baseUrl.slice(0, -1);
       } else {
-        // If on the client (web browser), figure out the base URL automatically
+        // If on the client, figure out the base URL automatically
         if (Meteor.isClient) {
           baseUrl = window.location.origin;
         }
@@ -68,7 +68,7 @@ Avatar = {
         // use larger image (~200x200)
         url = 'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=large';
       }
-      else if (svc === 'google') {        
+      else if (svc === 'google') {
         url = user.services.google.picture;
       }
       else if (svc === 'github') {
@@ -91,10 +91,10 @@ Avatar = {
           // that is a relative path (e.g. 'images/defaultAvatar.png').
           default: gravatarDefault || defaultUrl,
           size: 200, // use 200x200 like twitter and facebook above (might be useful later)
-          secure: location.protocol === 'https:'
+          secure: Meteor.isClient && window.location.protocol === 'https:'
         };
 
-        var emailOrHash = getEmailOrHash(user); 
+        var emailOrHash = getEmailOrHash(user);
         url = emailOrHash && Gravatar.imageUrl(emailOrHash, options) || defaultUrl;
       }
     } else {
