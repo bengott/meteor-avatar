@@ -10,8 +10,8 @@ Template.avatar.helpers({
 
   style: function () {
     var style = '';
-    if (this.background) style += 'background: ' + this.background + ';';
-    if (this.color)      style += 'color: ' + this.color + ';';
+    if (this.bgColor)  style += 'background-color: ' + this.bgColor + ';';
+    if (this.txtColor) style += 'color: ' + this.txtColor + ';';
     return style;
   },
 
