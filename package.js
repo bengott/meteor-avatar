@@ -6,7 +6,7 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom(['METEOR@0.9.3', 'METEOR@0.9.4']);
+  api.versionsFrom(['METEOR@0.9.3', 'METEOR@0.9.4', 'METEOR@1.0']);
   api.use(['templating', 'stylus', 'reactive-var'], ['client']);
   api.use(['underscore', 'jparker:gravatar@0.3.0'], ['client', 'server']);
   api.addFiles(
