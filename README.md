@@ -16,12 +16,14 @@ Usage
 -----
 In an HTML file:
 ```
-{{> avatar (user=<user> || userId=<userId>) (class='(large) (rounded || circle)')}}
+{{> avatar (user=<user> || userId=<userId>) (class='(large || small) (rounded || circle)')
+    (bgColor='<color>') (txtColor='<color>') }}
 ```
 Optional template parameters:
-  1. Either a user object or userId (if neither -> default avatar).
-  2. CSS class string, where you can optionally specify 'large' and 'rounded' or 'circle'. Or you can specify a custom class string to use instead.  
+  1. user or userId: Either a user object or userId string (if neither -> default avatar).
+  2. class: CSS class string, where you can optionally specify 'large' or 'small' and 'rounded' or 'circle'. Or you can specify a custom class string to use instead.  
 (e.g. `{{> avatar user=user class='<your custom css string>'}}`)
+  3. bgColor and txtColor: Override the default colors for the initials avatar (color name or hex value). The default colors are white text on a gray (`#AAA`) background. You can override these colors globally in your own CSS, but these options allow for overriding the colors on this particular template instance.
 
 Global Configuration Options
 ----------------------------
@@ -36,7 +38,7 @@ Example usage:
 ```
 Avatar.options = {
   emailHashProperty: 'email_hash',
-  defaultAvatarUrl: 'http://example.com/images/defaultAvatar.png',
+  defaultAvatarUrl: 'images/defaultAvatar.png',
   // gravatarDefault: 'identicon',
   serverBaseUrl: 'http://example.com'
 };
@@ -52,7 +54,8 @@ Given a user object or userId, Avatar will retrieve the user's image with the fo
   4. GitHub
   5. Instagram
   6. Gravatar
-  7. More to come...
+  7. If no image can be retrieved, the user's initials will be shown. 
+  8. More to come...
 
 Eventually, the plan is to add more UI to allow the user to select which one he/she wants or upload a new image.
 
