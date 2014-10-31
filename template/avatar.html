@@ -1,6 +1,6 @@
 <template name="avatar">
-  <div class="avatar {{class}}">
-    <img src="{{url}}" />
-    <span style="{{style}}">{{initials}}</span>
+  <div class="avatar {{size}} {{borderRadiusType}} {{hideClass}} {{customClasses}}">
+    <img class="avatar-image" src="{{imageUrl}}" />
+    <span class="avatar-initials" style="{{initialsCss}}">{{initialsText}}</span>
   </div>
 </template>

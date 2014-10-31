@@ -1,26 +1,35 @@
 Template.avatar.helpers({
 
-  class: function () {
-    var c = this.class;
-    // If image loaded successfully, hide initials (show image).
-    // Else, hide image (show initials)
-    c += Template.instance().hasImage.get() ? ' avatar-hide-initials' : ' avatar-hide-image';
-    return c;
+  size: function () {
+    var valid = ['large', 'small'];
+    return _.contains(valid, this.size) ? 'avatar-' + this.size : '';
   },
 
-  style: function () {
-    var style = '';
-    if (this.bgColor)  style += 'background-color: ' + this.bgColor + ';';
-    if (this.txtColor) style += 'color: ' + this.txtColor + ';';
-    return style;
+  borderRadiusType: function () {
+    var valid = ['rounded', 'circle'];
+    return _.contains(valid, this.borderRadiusType) ? 'avatar-' + this.borderRadiusType : '';
   },
 
-  url: function () {
+  hideClass: function () {
+    // If image loaded successfully, hide initials. Else, hide image.
+    return Template.instance().hasImage.get() ? 'avatar-hide-initials' : 'avatar-hide-image';
+  },
+
+  customClasses: function () { return this.customClasses; },
+
+  imageUrl: function () {
     var user = this.user ? this.user : Meteor.users.findOne(this.userId);
     return Avatar.getUrl(user);
   },
 
-  initials: function () {
+  initialsCss: function () {
+    var css = '';
+    if (this.bgColor)  style += 'background-color: ' + this.bgColor + ';';
+    if (this.txtColor) style += 'color: ' + this.txtColor + ';';
+    return css;
+  },
+
+  initialsText: function () {
     var user = this.user ? this.user : Meteor.users.findOne(this.userId);
     return this.initials || Avatar.getInitials(user);
   }
