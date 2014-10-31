@@ -29,9 +29,9 @@ In an HTML file:
 Optional template parameters:
   1. `user` or `userId`: Either a user object or userId string, default avatar if omitted
   2. `size`: Size of the avatar, either 'large' (80px) or 'small' (30px), normal size (40px) if omitted
-  3. `borderRadiusType`: 'rounded' or 'circle'
-  4. `customClasses`: Any custom CSS classes you'd like to define on the avatar
-  5. `bgColor` and `txtColor`: Override the default colors for the initials avatar (color name or hex value). The default colors are white (`#FFF`) text on a gray (`#AAA`) background. You can override these colors globally in your own CSS, but these options allow for overriding the colors on this particular template instance.
+  3. `borderRadiusType`: Used for CSS border-radius property, either 'rounded' or 'circle', square if omitted
+  4. `customClasses`: Any custom CSS classes you'd like to define on the avatar container
+  5. `bgColor` and `txtColor`: Override the default colors for the initials avatar (color name or hex value). The default colors are white (`#FFF`) text on a gray (`#AAA`) background. You can override these colors globally in your own CSS, but these parameters allow for overriding the colors on this particular template instance.
 
 Global Configuration Options
 ----------------------------
