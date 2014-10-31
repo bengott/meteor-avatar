@@ -27,35 +27,29 @@ Avatar = {
 
   // Get the initials of the user
   getInitials: function (user) {
-    var initials = "";
 
-    if(!user) {
-      return;
-    }
+    var initials = '';
 
-    if(user.profile && user.profile.firstName) {
+    if (user && user.profile && user.profile.firstName) {
       initials = user.profile.firstName.charAt(0).toUpperCase();
 
-      if(user.profile.lastName) {
+      if (user.profile.lastName) {
         initials += user.profile.lastName.charAt(0).toUpperCase();
       }
-      else if(user.profile.familyName) {
+      else if (user.profile.familyName) {
         initials += user.profile.familyName.charAt(0).toUpperCase();
       }
-      else if(user.profile.secondName) {
+      else if (user.profile.secondName) {
         initials += user.profile.secondName.charAt(0).toUpperCase();
       }
-      else if(user.profile.name) {
-        initials += user.profile.name.charAt(0).toUpperCase();
-      }
     }
-    else if(user.profile && user.profile.name) {
-      user.profile.name.split(" ").forEach(function(part){
+    else if (user && user.profile && user.profile.name) {
+      user.profile.name.split(' ').forEach(function (part) {
         initials += part.charAt(0).toUpperCase();
       });
     }
 
-    return initials ? initials : null;
+    return initials;
   },
 
   // Get the url of the user's avatar
@@ -111,6 +105,7 @@ Avatar = {
         url = user.services.instagram.profile_picture;
       }
       else if (svc === 'none') {
+        var gravatarDefault;
         var validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank'];
         if (_.contains(validGravatars, Avatar.options.gravatarDefault)) {
           gravatarDefault = Avatar.options.gravatarDefault;
@@ -132,7 +127,8 @@ Avatar = {
         var emailOrHash = getEmailOrHash(user);
         url = emailOrHash && Gravatar.imageUrl(emailOrHash, options) || defaultUrl;
       }
-    } else {
+    }
+    else {
       url = defaultUrl;
     }
 

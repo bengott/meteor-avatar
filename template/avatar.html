@@ -1,7 +1,6 @@
 <template name="avatar">
-        {{#if hasImage}}
-            <img src="{{avatar.url}}" class="{{class}}" />
-        {{else}}
-            <span class="{{class}}" style="{{style}}">{{avatar.initials}}</span>
-        {{/if}}
+  <div class="avatar {{class}}">
+    <img src="{{url}}" />
+    <span style="{{style}}">{{initials}}</span>
+  </div>
 </template>

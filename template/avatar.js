@@ -1,75 +1,41 @@
 Template.avatar.helpers({
 
-  hasImage: function() {
-    Template.instance().hasImageDep.depend();
-    return Template.instance().hasImage
-  },
-
-  // If the input {{class}} string is empty or contains only modifier
-  // classes ('large', 'rounded', 'circle'), return 'avatar ' + {{class}}.
-  // Otherwise, the input string is custom CSS, so return it unmodified. This
-  // also preserves backward compatibility when 'avatar (+ mods)' is specified.
   class: function () {
-    var input, output;
     // Support {{cssClass}} for backward compatibility
-    input = (this.cssClass && !this.class) ? this.cssClass : this.class;
-    if (input) {
-      var mods = ['large', 'small', 'rounded', 'circle'];
-      var classes = input.split(' ');
-      var onlyMods = _.every(classes, function (c) { return _.contains(mods, c); });
-      output = (onlyMods) ? 'avatar ' + input : input;  
-    } else { 
-      output = 'avatar';
-    }
-    return output;
+    var str = (this.cssClass && !this.class) ? this.cssClass : this.class;
+    // If image loaded successfully, hide initials (show image).
+    // Else, hide image (show initials)
+    str += Template.instance().hasImage.get() ? ' hideInitials' : ' hideImage';
+    return str;
   },
 
-  style: function() {
-    var style;
-
-    if(this.background) {
-      style = "background: " + this.background + ";";
-    }
-    if(this.color) {
-      style += "color: " + this.color + ";";
-    }
-
+  style: function () {
+    var style = '';
+    if (this.background) style += 'background: ' + this.background + ';';
+    if (this.color)      style += 'color: ' + this.color + ';';
     return style;
   },
 
-  avatar: function () {
-    var user;
+  url: function () {
+    var user = this.user ? this.user : Meteor.users.findOne(this.userId);
+    return Avatar.getUrl(user);
+  },
 
-    if (this.user) {
-      user = this.user;
-    }
-    else if (this.userId) {
-      user = Meteor.users.findOne(this.userId);
-    }
-
-    return {
-      initials: this.initials ? this.initials : Avatar.getInitials(user),
-      url: Avatar.getUrl(user)
-    };
+  initials: function () {
+    var user = this.user ? this.user : Meteor.users.findOne(this.userId);
+    return this.initials || Avatar.getInitials(user);
   }
+
 });
 
-Template.avatar.created = function() {
-  this.hasImage = true;
-  this.hasImageDep = new Deps.Dependency();
+// Use a reactive variable to store image load success/failure
+Template.avatar.created = function () {
+  this.hasImage = new ReactiveVar(true);
 };
 
-Template.avatar.rendered = function onRendered() {
+// Determine if image loaded successfully and set hasImage variable
+Template.avatar.rendered = function () {
   var self = this;
-  var avatar = $('.avatar');
-
-  avatar.on('error', function onError(){
-    self.hasImage = false;
-    self.hasImageDep.changed();
-  });
-
-  avatar.on('load', function onLoad(){
-    self.hasImage = true;
-    self.hasImageDep.changed();
-  });
+  this.$('img').on('error', function () { self.hasImage.set(false); })
+               .on('load',  function () { self.hasImage.set(true); });
 };

@@ -3,29 +3,47 @@
 .avatar
   height 40px
   width 40px
-  background-size 100% 100%
-  display block
-  background #aaa
-  color #fff
-  font-size 14px
-  text-align center
-  font-family "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif
-  line-height 40px
 
-  &.rounded
-    border-radius 5px
+  img, span
+    height 100%
+    width 100%
 
-  &.circle
-    border-radius 50%
+  span
+    display block
+    background-size 100% 100%
+    background-color #aaa
+    color #fff
+    font-size 20px
+    line-height 40px
+    font-family "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif
+    text-align center
 
   &.large
     height 80px
     width 80px
-    font-size 27px
-    line-height 80px
+    span
+      font-size 40px
+      line-height 80px
 
   &.small
     height 30px
     width 30px
-    font-size 12px
-    line-height 30px
+    span
+      font-size 14px
+      line-height 30px
+
+  &.rounded
+    img, span
+      border-radius 5px
+
+  &.circle
+    img, span
+      border-radius 50%
+
+  &.hideImage
+    img
+      display none
+
+  &.hideInitials
+    span
+      display none
