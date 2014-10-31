@@ -1,12 +1,11 @@
 Template.avatar.helpers({
 
   class: function () {
-    // Support {{cssClass}} for backward compatibility
-    var str = (this.cssClass && !this.class) ? this.cssClass : this.class;
+    var c = this.class;
     // If image loaded successfully, hide initials (show image).
     // Else, hide image (show initials)
-    str += Template.instance().hasImage.get() ? ' hideInitials' : ' hideImage';
-    return str;
+    c += Template.instance().hasImage.get() ? ' hideInitials' : ' hideImage';
+    return c;
   },
 
   style: function () {
