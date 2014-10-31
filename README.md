@@ -12,11 +12,11 @@ $ meteor add bengott:avatar
 ```
 Of course, you also need to add the 'accounts-<service>' packages for the services you're using (e.g. accounts-twitter) and accounts-ui or something similar in order to add login functionality to your app.
 
-Usage 
+Usage
 -----
 In an HTML file:
 ```
-{{> avatar (user=<user> || userId=<userId>) (class='(large || small) (rounded || circle)')
+{{> avatar (user=<user> || userId=<userId>) (class='(avatar-large || avatar-small) (avatar-rounded || avatar-circle)')
     (bgColor='<color>') (txtColor='<color>') }}
 ```
 Optional template parameters:
@@ -54,7 +54,7 @@ Given a user object or userId, Avatar will retrieve the user's image with the fo
   4. GitHub
   5. Instagram
   6. Gravatar
-  7. If no image can be retrieved, the user's initials will be shown. 
+  7. If no image can be retrieved, the user's initials will be shown.
   8. More to come...
 
 Eventually, the plan is to add more UI to allow the user to select which one he/she wants or upload a new image.
