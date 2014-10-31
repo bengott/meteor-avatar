@@ -4,7 +4,7 @@ Template.avatar.helpers({
     var c = this.class;
     // If image loaded successfully, hide initials (show image).
     // Else, hide image (show initials)
-    c += Template.instance().hasImage.get() ? ' .avatar-hide-initials' : ' .avatar-hide-image';
+    c += Template.instance().hasImage.get() ? ' avatar-hide-initials' : ' avatar-hide-image';
     return c;
   },
 
