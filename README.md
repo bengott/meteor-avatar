@@ -20,10 +20,10 @@ In an HTML file:
     (bgColor='<color>') (txtColor='<color>') }}
 ```
 Optional template parameters:
-  1. user or userId: Either a user object or userId string (if neither -> default avatar).
-  2. class: CSS class string, where you can optionally specify 'large' or 'small' and 'rounded' or 'circle'. Or you can specify a custom class string to use instead.  
+  1. `user` or `userId`: Either a user object or userId string (if neither -> default avatar).
+  2. `class`: CSS class string, where you can optionally specify 'large' or 'small' and 'rounded' or 'circle'. Or you can specify a custom class string to use instead.  
 (e.g. `{{> avatar user=user class='<your custom css string>'}}`)
-  3. bgColor and txtColor: Override the default colors for the initials avatar (color name or hex value). The default colors are white text on a gray (`#AAA`) background. You can override these colors globally in your own CSS, but these options allow for overriding the colors on this particular template instance.
+  3. `bgColor` and `txtColor`: Override the default colors for the initials avatar (color name or hex value). The default colors are white (`#FFF`) text on a gray (`#AAA`) background. You can override these colors globally in your own CSS, but these options allow for overriding the colors on this particular template instance.
 
 Global Configuration Options
 ----------------------------
