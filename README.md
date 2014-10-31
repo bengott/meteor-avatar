@@ -4,6 +4,10 @@
 Consolidated Avatar Template Package for Meteor
 
 
+***BREAKING CHANGES:***  
+The template parameters have been overhauled in version 0.5.0. Please update your HTML accordingly if you update the package to the latest version.
+
+
 Installation
 ------------
 In your Meteor project directory, run:  
@@ -16,14 +20,16 @@ Usage
 -----
 In an HTML file:
 ```
-{{> avatar (user=<user> || userId=<userId>) (class='(avatar-large || avatar-small) (avatar-rounded || avatar-circle)')
-    (bgColor='<color>') (txtColor='<color>') }}
+{{> avatar (user=<user> || userId=<userId>) (size='large' || 'small') (borderRadiusType='rounded' || 'circle')
+    (customClasses='custom1 custom2') (bgColor='<color>') (txtColor='<color>') }}
 ```
+
 Optional template parameters:
-  1. `user` or `userId`: Either a user object or userId string (if neither -> default avatar).
-  2. `class`: CSS class string, where you can optionally specify 'large' or 'small' and 'rounded' or 'circle'. Or you can specify a custom class string to use instead.  
-(e.g. `{{> avatar user=user class='<your custom css string>'}}`)
-  3. `bgColor` and `txtColor`: Override the default colors for the initials avatar (color name or hex value). The default colors are white (`#FFF`) text on a gray (`#AAA`) background. You can override these colors globally in your own CSS, but these options allow for overriding the colors on this particular template instance.
+  1. `user` or `userId`: Either a user object or userId string, default avatar if omitted
+  2. `size`: Size of the avatar, either 'large' (80px) or 'small' (30px), normal size (40px) if omitted
+  3. `borderRadiusType`: 'rounded' or 'circle'
+  4. `customClasses`: Any custom CSS classes you'd like to define on the avatar
+  5. `bgColor` and `txtColor`: Override the default colors for the initials avatar (color name or hex value). The default colors are white (`#FFF`) text on a gray (`#AAA`) background. You can override these colors globally in your own CSS, but these options allow for overriding the colors on this particular template instance.
 
 Global Configuration Options
 ----------------------------
