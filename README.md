@@ -20,8 +20,10 @@ Usage
 -----
 In an HTML file:
 ```
-{{> avatar (user=<user> || userId=<userId>) (size='large' || 'small') (borderRadiusType='rounded' || 'circle')
-    (customClasses='custom1 custom2') (bgColor='<color>') (txtColor='<color>') }}
+{{> avatar (user=<user> || userId=<userId>)
+           (size='large' || 'small') (borderRadiusType='rounded' || 'circle')
+           (customClasses='custom1 custom2')
+           (bgColor='<color>') (txtColor='<color>') }}
 ```
 
 Optional template parameters:
