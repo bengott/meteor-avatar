@@ -5,9 +5,18 @@ Template.avatar.helpers({
     return _.contains(valid, this.size) ? 'avatar-' + this.size : '';
   },
 
-  borderRadiusType: function () {
+  dimensions: function () {
+    var value;
+    if      (this.size === 'small') value = 30;
+    else if (this.size === 'large') value = 80;
+    else                            value = 40;
+
+    return { width: value, height: value };
+  },
+
+  type: function () {
     var valid = ['rounded', 'circle'];
-    return _.contains(valid, this.borderRadiusType) ? 'avatar-' + this.borderRadiusType : '';
+    return _.contains(valid, this.type) ? 'avatar-' + this.type : '';
   },
 
   hideClass: function () {
@@ -15,7 +24,7 @@ Template.avatar.helpers({
     return Template.instance().hasImage.get() ? 'avatar-hide-initials' : 'avatar-hide-image';
   },
 
-  customClasses: function () { return this.customClasses; },
+  class: function () { return this.class; },
 
   imageUrl: function () {
     var user = this.user ? this.user : Meteor.users.findOne(this.userId);
