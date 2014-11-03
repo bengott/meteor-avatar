@@ -65,7 +65,8 @@ Given a user object or userId, Avatar will retrieve the user's image with the fo
   7. If no image can be retrieved, the user's initials will be shown.
   8. More to come...
 
-Eventually, the plan is to add more UI to allow the user to select which one he/she wants or upload a new image.
+**Linked Services/Accounts:**  
+By default, the Meteor accounts system creates a separate user account for each service you login with. In order to merge those accounts together, you'd need to use a package like [accounts-meld](https://atmospherejs.com/splendido/accounts-meld) or [link-accounts](https://atmospherejs.com/bozhao/link-accounts). In the future, the plan is to add UI to allow the user to select which avatar they want to use ([Issue #10](https://github.com/bengott/meteor-avatar/issues/10)) and/or upload their own image ([Issue #9](https://github.com/bengott/meteor-avatar/issues/9)).
 
 Credits
 -------
