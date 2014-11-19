@@ -21,7 +21,7 @@ Usage
 In an HTML file:
 ```
 {{> avatar (user=<user> || userId=<userId>)
-           (size='large' || 'small') (type='rounded' || 'circle')
+           (size='large' || 'small') (shape='rounded' || 'circle')
            (class='some custom classes')
            (bgColor='<color>') (txtColor='<color>') }}
 ```
