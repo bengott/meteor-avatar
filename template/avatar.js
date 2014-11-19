@@ -14,9 +14,9 @@ Template.avatar.helpers({
     return { width: value, height: value };
   },
 
-  type: function () {
+  shape: function () {
     var valid = ['rounded', 'circle'];
-    return _.contains(valid, this.type) ? 'avatar-' + this.type : '';
+    return _.contains(valid, this.shape) ? 'avatar-' + this.shape : '';
   },
 
   hideClass: function () {
