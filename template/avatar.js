@@ -33,8 +33,8 @@ Template.avatar.helpers({
 
   initialsCss: function () {
     var css = '';
-    if (this.bgColor)  style += 'background-color: ' + this.bgColor + ';';
-    if (this.txtColor) style += 'color: ' + this.txtColor + ';';
+    if (this.bgColor)  css += 'background-color: ' + this.bgColor + ';';
+    if (this.txtColor) css += 'color: ' + this.txtColor + ';';
     return css;
   },
 
