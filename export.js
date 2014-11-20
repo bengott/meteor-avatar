@@ -57,7 +57,7 @@ Avatar = {
 
     var url, defaultUrl, baseUrl;
 
-    defaultUrl = Avatar.options.defaultAvatarUrl;
+    defaultUrl = Avatar.options.defaultAvatarUrl || 'packages/bengott_avatar/default.png';
 
     // If it's a relative path (no '//' anywhere), complete the URL
     if (defaultUrl.indexOf('//') === -1) {
