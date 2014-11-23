@@ -99,7 +99,7 @@ Avatar = {
         url = user.services.google.picture;
       }
       else if (svc === 'github') {
-        url = 'http://avatars.githubusercontent.com/u/' + user.services.github.id + '?v=2';
+        url = 'http://avatars.githubusercontent.com/' + user.services.github.username + '?s=200';
       }
       else if (svc === 'instagram') {
         url = user.services.instagram.profile_picture;
