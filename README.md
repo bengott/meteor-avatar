@@ -63,11 +63,9 @@ Given a user object or userId string, Avatar will retrieve the user's image with
   5. Instagram
   6. Gravatar, which will try to return an avatar matching the user's email address/hash. If it can't find one, then:
 
-    If `Avatar.options.defaultType` is "image" and `Avatar.options.gravatarDefault` is valid, Gravatar will return a default image (e.g., and identicon).
-
-    If `Avatar.options.defaultType` is "image" and `Avatar.options.gravatarDefault` is invalid or undefined, Gravatar will return the image referenced by either `Avatar.options.defaultImageUrl` or the included default image.
-
-    Else, Gravatar returns a 404 (Not Found) response, and...
+    - If `Avatar.options.defaultType` is "image" and `Avatar.options.gravatarDefault` is valid, Gravatar will return a default image (e.g., and identicon).
+    - If `Avatar.options.defaultType` is "image" and `Avatar.options.gravatarDefault` is invalid or undefined, Gravatar will return the image referenced by either `Avatar.options.defaultImageUrl` or the included default image.
+    - Else, Gravatar returns a 404 (Not Found) response, and...
   7. If no image can be retrieved, the user's initials will be shown.
   8. More to come...
 
