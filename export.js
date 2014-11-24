@@ -59,10 +59,7 @@ Avatar = {
   // Get the url of the user's avatar
   getUrl: function (user) {
 
-    var url, defaultUrl;
-
-    defaultUrl = Avatar.options.defaultImageUrl || 'packages/bengott_avatar/default.png';
-
+    var defaultUrl = Avatar.options.defaultImageUrl || 'packages/bengott_avatar/default.png';
     // If it's a relative path (no '//' anywhere), complete the URL
     if (defaultUrl.indexOf('//') === -1) {
       // Strip starting slash if it exists
@@ -71,6 +68,7 @@ Avatar = {
       defaultUrl = Meteor.absoluteUrl() + defaultUrl;
     }
 
+    var url = '';
     var svc = getService(user);
     if (svc === 'twitter') {
       // use larger image (200x200 is smallest custom option)
@@ -90,33 +88,8 @@ Avatar = {
       url = user.services.instagram.profile_picture;
     }
     else if (svc === 'none') {
-      var gravatarDefault;
-      var validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank'];
-
-      // Initials are shown when Gravatar returns 404. Therefore, pass '404'
-      // as the gravatarDefault unless defaultType is image.
-      if (Avatar.options.defaultType === 'image') {
-        var valid = _.contains(validGravatars, Avatar.options.gravatarDefault);
-        gravatarDefault = valid ? Avatar.options.gravatarDefault : defaultUrl;
-      }
-      else {
-        gravatarDefault = '404';
-      }
-
-      var options = {
-        // NOTE: Gravatar's default option requires a publicly accessible URL,
-        // so it won't work when your app is running on localhost and you're
-        // using an image with either the standard default image URL or a custom
-        // defaultImageUrl that is a relative path (e.g. 'images/defaultAvatar.png').
-        default: gravatarDefault,
-        size: 200, // use 200x200 like twitter and facebook above (might be useful later)
-        secure: Meteor.absoluteUrl().slice(0,6) === 'https:'
-      };
-
-      var emailOrHash = getEmailOrHash(user);
-      url = Gravatar.imageUrl(emailOrHash, options);
+      url = getGravatarUrl(user, defaultUrl);
     }
-
     return url;
   }
 };
