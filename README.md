@@ -27,12 +27,12 @@ In an HTML file:
 ```
 
 Optional template parameters:
-  1. `user` or `userId`: Either a user object or userId string, default avatar if omitted
-  2. `size`: Size of the avatar, either "large" (80px) or "small" (30px), normal size (40px) if omitted
-  3. `shape`: Used for CSS border-radius property, either "rounded" or "circle", square if omitted
-  4. `class`: Any custom CSS classes you'd like to define on the avatar container. The string is passed straight through to the `class` attribute on the `div` container element.
-  5. `initials`: Specify the initials to show for the initials avatar. The package automatically tries to determine the user's initials from profile data, but if defined, this param will override that.
-  6. `bgColor` and `txtColor`: Override the default colors for the initials avatar (color name or hex value string). The default colors are white (`"#FFF"`) text on a gray (`"#AAA"`) background. You could also override these default colors in your CSS if you wanted to, but this param allows you to do it directly from the template call.
+  - `user` or `userId`: Either a user object or userId string, default avatar if omitted
+  - `size`: Size of the avatar, either "large" (80px) or "small" (30px), normal size (40px) if omitted
+  - `shape`: Used for CSS border-radius property, either "rounded" or "circle", square if omitted
+  - `class`: Any custom CSS classes you'd like to define on the avatar container. The string is passed straight through to the `class` attribute on the `div` container element.
+  - `initials`: Specify the initials to show for the initials avatar. The package automatically tries to determine the user's initials from profile data, but if defined, this param will override that.
+  - `bgColor` and `txtColor`: Override the default colors for the initials avatar (color name or hex value string). The default colors are white (`"#FFF"`) text on a gray (`"#AAA"`) background. You could also override these default colors in your CSS if you wanted to, but this param allows you to do it directly from the template call.
 
 Global Configuration Options
 ----------------------------
