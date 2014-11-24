@@ -9,11 +9,16 @@ Avatar = {
     // (useful when user emails are not published).
     emailHashProperty: '',
 
-    // This will replace the standard default avatar URL. It can be a relative
-    // path (relative to website's base URL, e.g. 'images/defaultAvatar.png').
-    defaultAvatarUrl: '',
+    // What to show when no avatar can be found via linked services:
+    // 'initials' (default) or 'image'
+    defaultType: '',
 
-    // Gravatar default option to use (overrides default avatar URL)
+    // This will replace the included default avatar image's URL
+    // ('packages/bengott_avatar/default.png'). It can be a relative path
+    // (relative to website's base URL, e.g. 'images/defaultAvatar.png').
+    defaultImageUrl: '',
+
+    // Gravatar default option to use (overrides default image URL)
     // Options are available at:
     // https://secure.gravatar.com/site/implement/images/#default-image
     gravatarDefault: '',
@@ -62,7 +67,7 @@ Avatar = {
 
     var url, defaultUrl, baseUrl;
 
-    defaultUrl = Avatar.options.defaultAvatarUrl || 'packages/bengott_avatar/default.png';
+    defaultUrl = Avatar.options.defaultImageUrl || 'packages/bengott_avatar/default.png';
 
     // If it's a relative path (no '//' anywhere), complete the URL
     if (defaultUrl.indexOf('//') === -1) {
@@ -90,51 +95,50 @@ Avatar = {
       defaultUrl = baseUrl + '/' + defaultUrl;
     }
 
-    if (user) {
-      var svc = getService(user);
-      if (svc === 'twitter') {
-        // use larger image (200x200 is smallest custom option)
-        url = user.services.twitter.profile_image_url.replace('_normal.', '_200x200.');
-      }
-      else if (svc === 'facebook') {
-        // use larger image (~200x200)
-        url = 'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=large';
-      }
-      else if (svc === 'google') {
-        url = user.services.google.picture;
-      }
-      else if (svc === 'github') {
-        url = 'http://avatars.githubusercontent.com/' + user.services.github.username + '?s=200';
-      }
-      else if (svc === 'instagram') {
-        url = user.services.instagram.profile_picture;
-      }
-      else if (svc === 'none') {
-        var gravatarDefault;
-        var validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank'];
-        if (_.contains(validGravatars, Avatar.options.gravatarDefault)) {
-          gravatarDefault = Avatar.options.gravatarDefault;
-        }
-        else {
-          gravatarDefault = '404';
-        }
-
-        var options = {
-          // NOTE: Gravatar's default option requires a publicly accessible URL,
-          // so it won't work when your app is running on localhost and you're
-          // using either the standard default URL or a custom defaultAvatarUrl
-          // that is a relative path (e.g. 'images/defaultAvatar.png').
-          default: gravatarDefault || defaultUrl,
-          size: 200, // use 200x200 like twitter and facebook above (might be useful later)
-          secure: Meteor.isClient && window.location.protocol === 'https:'
-        };
-
-        var emailOrHash = getEmailOrHash(user);
-        url = emailOrHash && Gravatar.imageUrl(emailOrHash, options) || defaultUrl;
-      }
+    var svc = getService(user);
+    if (svc === 'twitter') {
+      // use larger image (200x200 is smallest custom option)
+      url = user.services.twitter.profile_image_url.replace('_normal.', '_200x200.');
     }
-    else {
-      url = defaultUrl;
+    else if (svc === 'facebook') {
+      // use larger image (~200x200)
+      url = 'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=large';
+    }
+    else if (svc === 'google') {
+      url = user.services.google.picture;
+    }
+    else if (svc === 'github') {
+      url = 'http://avatars.githubusercontent.com/' + user.services.github.username + '?s=200';
+    }
+    else if (svc === 'instagram') {
+      url = user.services.instagram.profile_picture;
+    }
+    else if (svc === 'none') {
+      var gravatarDefault;
+      var validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank'];
+
+      // Initials are shown when Gravatar returns 404. Therefore, pass '404'
+      // as the gravatarDefault unless defaultType is image.
+      if (Avatar.options.defaultType === 'image') {
+        var valid = _.contains(validGravatars, Avatar.options.gravatarDefault);
+        gravatarDefault = valid ? Avatar.options.gravatarDefault : defaultUrl;
+      }
+      else {
+        gravatarDefault = '404';
+      }
+
+      var options = {
+        // NOTE: Gravatar's default option requires a publicly accessible URL,
+        // so it won't work when your app is running on localhost and you're
+        // using an image with either the standard default URL or a custom
+        // defaultImageUrl that is a relative path (e.g. 'images/defaultAvatar.png').
+        default: gravatarDefault,
+        size: 200, // use 200x200 like twitter and facebook above (might be useful later)
+        secure: Meteor.isClient && window.location.protocol === 'https:'
+      };
+
+      var emailOrHash = getEmailOrHash(user);
+      url = Gravatar.imageUrl(emailOrHash, options);
     }
 
     return url;
