@@ -42,7 +42,6 @@ The package exports a global `Avatar` object which has a property named `options
   - `defaultType`: What to show when no avatar can be found via linked services: "initials" (default) or "image"
   - `defaultImageUrl`: This will replace the included default avatar image URL ("packages/bengott_avatar/default.png"). It can be a relative path (e.g. "images/defaultAvatar.png").
   - `gravatarDefault`: Gravatar default option to use (overrides default image URL). Options are available at: https://secure.gravatar.com/site/implement/images/#default-image
-  - `serverBaseUrl`: Server base URL. By default, the package tries to automatically determine your website's base URL. This option effectively overrides that. If calling Avatar.getUrl() from the server, this property is REQUIRED (because server can't call window.location to figure it out).
 
 Example usage:
 ```
@@ -50,8 +49,7 @@ Avatar.options = {
   emailHashProperty: "email_hash",
   //defaultType: "image"
   //defaultImageUrl: "images/defaultAvatar.png",
-  //gravatarDefault: "identicon",
-  //serverBaseUrl: "http://example.com"
+  //gravatarDefault: "identicon"
 };
 ```
 
