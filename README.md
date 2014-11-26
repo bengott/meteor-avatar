@@ -70,7 +70,7 @@ Avatar.options = {
 ```
 Avatar.options = {
   defaultType: "image",
-  gravatarDefault: "img/default-avatar.png" OR "http://example.com/default-avatar.png"
+  gravatarDefault: "identicon"
 };
 ```
   ***Note that gravatarDefault overrides defaultImageUrl and the included package default image.***
