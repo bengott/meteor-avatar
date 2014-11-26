@@ -26,6 +26,11 @@ In an HTML file:
            (initials="<initials>") (bgColor="<color>") (txtColor="<color>") }}
 ```
 
+That may look like a lot of options, but they are all optional. Most of the time, your HTML will look more like this:
+```
+{{> avatar user=this shape="circle"}}
+```
+
 Optional template parameters:
   - `user` or `userId`: Either a user object or userId string, default avatar if omitted
   - `size`: Size of the avatar, either "large" (80px) or "small" (30px), normal size (40px) if omitted
@@ -40,16 +45,40 @@ The package exports a global `Avatar` object which has a property named `options
 
   - `emailHashProperty`: This property on the user object will be used for retrieving gravatars (useful when user emails are not published)
   - `defaultType`: What to show when no avatar can be found via linked services: "initials" (default) or "image"
-  - `defaultImageUrl`: This will replace the included default avatar image URL ("packages/bengott_avatar/default.png"). It can be a relative path (e.g. "images/defaultAvatar.png").
-  - `gravatarDefault`: Gravatar default option to use (overrides default image URL). Options are available at: https://secure.gravatar.com/site/implement/images/#default-image
+  - `defaultImageUrl`: This will replace the included package default image URL ("packages/bengott_avatar/default.png"). It can be a relative path (e.g. "images/defaultAvatar.png").
+  - `gravatarDefault`: Gravatar default option to use (overrides defaultImageUrl option and included package default image URL). Options are available at: https://secure.gravatar.com/site/implement/images/#default-image
 
 Example usage:
+- To show initials when no avatar can be found via linked services, you don't need to define any options. This is the default functionality.
+
+- To show the included package default image:
 ```
 Avatar.options = {
-  emailHashProperty: "email_hash",
-  //defaultType: "image"
-  //defaultImageUrl: "images/defaultAvatar.png",
-  //gravatarDefault: "identicon"
+  defaultType: "image"
+};
+```
+- To show a custom default image:
+```
+Avatar.options = {
+  defaultType: "image",
+  defaultImageUrl: "img/default-avatar.png" OR "http://example.com/default-avatar.png"
+};
+```
+  ***Note that Gravatar's default option requires a publicly accessible URL, so it won't work when your app is running on localhost and you're using either the included package default image or a custom defaultImageUrl that is a relative path. It will work fine once deployed though.*** 
+
+- To show one of Gravatar's options (e.g. "identicon"):
+```
+Avatar.options = {
+  defaultType: "image",
+  gravatarDefault: "img/default-avatar.png" OR "http://example.com/default-avatar.png"
+};
+```
+  ***Note that gravatarDefault overrides defaultImageUrl and the included package default image.***
+
+- And if your app does not publish the user.emails object/property but publishes an email hash property instead, you can specify it like this (the Gravatar package generates a hash internally when you give it an email too; this just allows you to decouple those two steps so as not to make all your users' emails public):
+```
+Avatar.options = {
+  emailHashProperty: "email_hash"
 };
 ```
 
@@ -63,12 +92,11 @@ Given a user object or userId string, Avatar will retrieve the user's image with
   5. Instagram
   6. Gravatar, which will try to return an avatar matching the user's email address/hash. If it can't find one, then:
     - If `Avatar.options.defaultType` is "image" and `Avatar.options.gravatarDefault` is valid, Gravatar will return a default image (e.g. an identicon).
-    - If `Avatar.options.defaultType` is "image" and `Avatar.options.gravatarDefault` is invalid or undefined, Gravatar will return the image referenced by either `Avatar.options.defaultImageUrl` or the included default image.
+    - If `Avatar.options.defaultType` is "image" and `Avatar.options.gravatarDefault` is invalid or undefined, Gravatar will return either the image referenced by `Avatar.options.defaultImageUrl` or the included default image.
     - Else, Gravatar returns a 404 (Not Found) response, and...
   7. If no image can be retrieved, the user's initials will be shown.
   8. More to come...
 
-***NOTE***: Gravatar's default option requires a publicly accessible URL, so it won't work when your app is running on localhost and you're using either the standard included default image URL or a custom `Avatar.options.defaultImageUrl` that is a relative path.
 
 **Linked Services/Accounts:**
 By default, the Meteor accounts system creates a separate user account for each service you login with. In order to merge those accounts together, you'd need to use a package like [accounts-meld](https://atmospherejs.com/splendido/accounts-meld) or [link-accounts](https://atmospherejs.com/bozhao/link-accounts). In the future, the plan is to add UI to allow the user to select which avatar they want to use ([Issue #10](https://github.com/bengott/meteor-avatar/issues/10)) and/or upload their own image ([Issue #9](https://github.com/bengott/meteor-avatar/issues/9)).
