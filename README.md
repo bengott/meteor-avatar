@@ -97,6 +97,37 @@ Given a user object or userId string, Avatar will retrieve the user's image with
   7. If no image can be retrieved, the user's initials will be shown.
   8. More to come...
 
+**Note fields, that are required clientside**
+
+Since fields in `user.services` contain security info, it's often wise to restrict access to those in publications. E.g.:
+```
+UsersCollection.find({ /* query */ }, {
+  fields: {
+    ...
+    'services.facebook.id' : true
+    ...
+  }
+})
+```
+
+Fields, to be used to get avatar (one per service):
+```
+'services.twitter.profile_image_url'
+'services.facebook.id'
+'services.google.picture'
+'services.github.username'
+'services.instagram.profile_picture'
+```
+
+Fields, to be used to form initials (if needed and present):
+```
+ 'profile.firstName'
+ 'profile.lastName'
+ 'profile.familyName'
+ 'profile.secondName'
+ 
+ 'profile.name'
+```
 
 **Linked Services/Accounts:**
 By default, the Meteor accounts system creates a separate user account for each service you login with. In order to merge those accounts together, you'd need to use a package like [accounts-meld](https://atmospherejs.com/splendido/accounts-meld) or [link-accounts](https://atmospherejs.com/bozhao/link-accounts). In the future, the plan is to add UI to allow the user to select which avatar they want to use ([Issue #10](https://github.com/bengott/meteor-avatar/issues/10)) and/or upload their own image ([Issue #9](https://github.com/bengott/meteor-avatar/issues/9)).
