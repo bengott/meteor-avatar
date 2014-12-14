@@ -11,7 +11,7 @@ The template parameters have been overhauled in version 0.5.0. The `Avatar.optio
 Installation
 ------------
 In your Meteor project directory, run:
-```
+```shell
 $ meteor add bengott:avatar
 ```
 Of course, you also need to add the accounts-<service> packages for the services you're using (e.g. accounts-twitter) and accounts-ui or something similar in order to add login functionality to your app.
@@ -19,7 +19,7 @@ Of course, you also need to add the accounts-<service> packages for the services
 Usage
 -----
 In an HTML file:
-```
+```handlebars
 {{> avatar (user=<user> || userId=<userId>)
            (size="large" || "small") (shape="rounded" || "circle")
            (class="some custom classes")
@@ -27,7 +27,7 @@ In an HTML file:
 ```
 
 That may look like a lot of options, but they are all optional. Most of the time, your HTML will look more like this:
-```
+```handlebars
 {{> avatar user=this shape="circle"}}
 ```
 
@@ -52,13 +52,13 @@ Example usage:
 - To show initials when no avatar can be found via linked services, you don't need to define any options. This is the default functionality.
 
 - To show the included package default image:
-```
+```javascript
 Avatar.options = {
   defaultType: "image"
 };
 ```
 - To show a custom default image:
-```
+```javascript
 Avatar.options = {
   defaultType: "image",
   defaultImageUrl: "img/default-avatar.png" OR "http://example.com/default-avatar.png"
@@ -67,7 +67,7 @@ Avatar.options = {
   ***Note that Gravatar's default option requires a publicly accessible URL, so it won't work when your app is running on localhost and you're using either the included package default image or a custom defaultImageUrl that is a relative path. It will work fine once deployed though.*** 
 
 - To show one of Gravatar's options (e.g. "identicon"):
-```
+```javascript
 Avatar.options = {
   defaultType: "image",
   gravatarDefault: "identicon"
@@ -76,7 +76,7 @@ Avatar.options = {
   ***Note that gravatarDefault overrides defaultImageUrl and the included package default image.***
 
 - And if your app does not publish the user.emails object/property but publishes an email hash property instead, you can specify it like this (the Gravatar package generates a hash internally when you give it an email too; this just allows you to decouple those two steps so as not to make all your users' emails public):
-```
+```javascript
 Avatar.options = {
   emailHashProperty: "email_hash"
 };
@@ -97,6 +97,37 @@ Given a user object or userId string, Avatar will retrieve the user's image with
   7. If no image can be retrieved, the user's initials will be shown.
   8. More to come...
 
+**Note fields, that are required clientside**
+
+Since fields in `user.services` contain security info, it's often wise to restrict access to those in publications. E.g.:
+```javascript
+UsersCollection.find({ /* query */ }, {
+  fields: {
+    //...
+    'services.facebook.id' : true
+    //...
+  }
+})
+```
+
+Fields, to be used to get avatar (one per service):
+```javascript
+'services.twitter.profile_image_url'
+'services.facebook.id'
+'services.google.picture'
+'services.github.username'
+'services.instagram.profile_picture'
+```
+
+Fields, to be used to form initials (if needed and present):
+```javascript
+ 'profile.firstName'
+ 'profile.lastName'
+ 'profile.familyName'
+ 'profile.secondName'
+ 
+ 'profile.name'
+```
 
 **Linked Services/Accounts:**
 By default, the Meteor accounts system creates a separate user account for each service you login with. In order to merge those accounts together, you'd need to use a package like [accounts-meld](https://atmospherejs.com/splendido/accounts-meld) or [link-accounts](https://atmospherejs.com/bozhao/link-accounts). In the future, the plan is to add UI to allow the user to select which avatar they want to use ([Issue #10](https://github.com/bengott/meteor-avatar/issues/10)) and/or upload their own image ([Issue #9](https://github.com/bengott/meteor-avatar/issues/9)).
