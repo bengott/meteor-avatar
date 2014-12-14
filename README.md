@@ -97,36 +97,35 @@ Given a user object or userId string, Avatar will retrieve the user's image with
   7. If no image can be retrieved, the user's initials will be shown.
   8. More to come...
 
-**Note fields, that are required clientside**
+**Required Fields/Properties on the User Object**
 
-Since fields in `user.services` contain security info, it's often wise to restrict access to those in publications. E.g.:
+Since fields in `user.services` contain security info, it's often wise to restrict access to those in publications, e.g.:
 ```javascript
 UsersCollection.find({ /* query */ }, {
   fields: {
     //...
-    'services.facebook.id' : true
+    "services.facebook.id" : true
     //...
   }
-})
+});
 ```
 
-Fields, to be used to get avatar (one per service):
+Fields used to get avatar image (one per service):
 ```javascript
-'services.twitter.profile_image_url'
-'services.facebook.id'
-'services.google.picture'
-'services.github.username'
-'services.instagram.profile_picture'
+"services.twitter.profile_image_url"
+"services.facebook.id"
+"services.google.picture"
+"services.github.username"
+"services.instagram.profile_picture"
 ```
 
-Fields, to be used to form initials (if needed and present):
+Fields used to form initials (if needed):
 ```javascript
- 'profile.firstName'
- 'profile.lastName'
- 'profile.familyName'
- 'profile.secondName'
- 
- 'profile.name'
+ "profile.firstName"
+ "profile.lastName"
+ "profile.familyName"
+ "profile.secondName"
+ "profile.name"
 ```
 
 **Linked Services/Accounts:**
