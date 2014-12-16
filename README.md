@@ -44,32 +44,33 @@ Global Configuration Options
 The package exports a global `Avatar` object which has a property named `options` (also an object). If defined (e.g. from a config file in your app), these options override default functionality.
 
   - `emailHashProperty`: This property on the user object will be used for retrieving gravatars (useful when user emails are not published)
-  - `defaultType`: What to show when no avatar can be found via linked services: "initials" (default) or "image"
+  - `fallbackType`: Determines the type of fallback to use when no image can be found via linked services (Gravatar included): "initials" (default) or "default image" (either the image specified by defaultImageUrl or the package's default image). If not specified or set to "initials" (the default), defaultImageUrl and gravatarDefault will be ignored.
   - `defaultImageUrl`: This will replace the included package default image URL ("packages/bengott_avatar/default.png"). It can be a relative path (e.g. "images/defaultAvatar.png").
   - `gravatarDefault`: Gravatar default option to use (overrides defaultImageUrl option and included package default image URL). Options are available at: https://secure.gravatar.com/site/implement/images/#default-image
 
 Example usage:
 - To show initials when no avatar can be found via linked services, you don't need to define any options. This is the default functionality.
+  *** Note that if fallbackType is not specified or set to "initials" (the default), defaultImageUrl and gravatarDefault will be ignored.
 
 - To show the included package default image:
 ```javascript
 Avatar.options = {
-  defaultType: "image"
+  fallbackType: "default image"
 };
 ```
 - To show a custom default image:
 ```javascript
 Avatar.options = {
-  defaultType: "image",
+  fallbackType: "default image",
   defaultImageUrl: "img/default-avatar.png" OR "http://example.com/default-avatar.png"
 };
 ```
-  ***Note that Gravatar's default option requires a publicly accessible URL, so it won't work when your app is running on localhost and you're using either the included package default image or a custom defaultImageUrl that is a relative path. It will work fine once deployed though.*** 
+  ***Note that Gravatar's default option requires a publicly accessible URL, so it won't work when your app is running on localhost and you're using either the included package default image or a custom defaultImageUrl that is a relative path. It will work fine once deployed though.***
 
 - To show one of Gravatar's options (e.g. "identicon"):
 ```javascript
 Avatar.options = {
-  defaultType: "image",
+  fallbackType: "default image",
   gravatarDefault: "identicon"
 };
 ```
@@ -91,8 +92,8 @@ Given a user object or userId string, Avatar will retrieve the user's image with
   4. GitHub
   5. Instagram
   6. Gravatar, which will try to return an avatar matching the user's email address/hash. If it can't find one, then:
-    - If `Avatar.options.defaultType` is "image" and `Avatar.options.gravatarDefault` is valid, Gravatar will return a default image (e.g. an identicon).
-    - If `Avatar.options.defaultType` is "image" and `Avatar.options.gravatarDefault` is invalid or undefined, Gravatar will return either the image referenced by `Avatar.options.defaultImageUrl` or the included default image.
+    - If `Avatar.options.fallbackType` is "default image" and `Avatar.options.gravatarDefault` is valid, Gravatar will return a default image (e.g. an identicon).
+    - If `Avatar.options.fallbackType` is "default image" and `Avatar.options.gravatarDefault` is invalid or undefined, Gravatar will return either the image referenced by `Avatar.options.defaultImageUrl` or the included default image.
     - Else, Gravatar returns a 404 (Not Found) response, and...
   7. If no image can be retrieved, the user's initials will be shown.
   8. More to come...

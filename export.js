@@ -9,9 +9,11 @@ Avatar = {
     // (useful when user emails are not published).
     emailHashProperty: '',
 
-    // What to show when no avatar can be found via linked services:
-    // 'initials' (default) or 'image'
-    defaultType: '',
+    // Determines the type of fallback to use when no image can be found via
+    // linked services (Gravatar included): "initials" (default) or
+    // "default image" (either the image specified by defaultImageUrl or the
+    // package's default image).
+    fallbackType: '',
 
     // This will replace the included default avatar image's URL
     // ('packages/bengott_avatar/default.png'). It can be a relative path

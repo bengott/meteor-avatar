@@ -14,8 +14,8 @@ getGravatarUrl = function (user, defaultUrl) {
   var validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank'];
 
   // Initials are shown when Gravatar returns 404. Therefore, pass '404'
-  // as the gravatarDefault unless defaultType is image.
-  if (Avatar.options.defaultType === 'image') {
+  // as the gravatarDefault unless fallbackType is 'default image'.
+  if (Avatar.options.fallbackType === 'default image') {
     var valid = _.contains(validGravatars, Avatar.options.gravatarDefault);
     gravatarDefault = valid ? Avatar.options.gravatarDefault : defaultUrl;
   }
