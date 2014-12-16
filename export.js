@@ -5,14 +5,13 @@ Avatar = {
   // override default functionality
   options: {
 
-    // This property on the user object will be used for retrieving gravatars
-    // (useful when user emails are not published).
-    emailHashProperty: '',
-
     // Determines the type of fallback to use when no image can be found via
-    // linked services (Gravatar included): "initials" (default) or
-    // "default image" (either the image specified by defaultImageUrl or the
-    // package's default image).
+    // linked services (Gravatar included):
+    //   "default image" (the default option, which will show either the image
+    //   specified by defaultImageUrl, the package's default image, or a Gravatar
+    //   default image)
+    //     OR
+    //   "initials" (show the user's initials).
     fallbackType: '',
 
     // This will replace the included default avatar image's URL
@@ -23,7 +22,11 @@ Avatar = {
     // Gravatar default option to use (overrides default image URL)
     // Options are available at:
     // https://secure.gravatar.com/site/implement/images/#default-image
-    gravatarDefault: ''
+    gravatarDefault: '',
+
+    // This property on the user object will be used for retrieving gravatars
+    // (useful when user emails are not published).
+    emailHashProperty: ''
   },
 
   // Get the initials of the user

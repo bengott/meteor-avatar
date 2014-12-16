@@ -44,16 +44,20 @@ Global Configuration Options
 ----------------------------
 The package exports a global `Avatar` object which has a property named `options` (also an object). If defined (e.g. from a config file in your app), these options override default functionality.
 
-  - `emailHashProperty`: This property on the user object will be used for retrieving gravatars (useful when user emails are not published)
-  - `fallbackType`: Determines the type of fallback to use when no image can be found via linked services (Gravatar included): "initials" (default) or "default image" (either the image specified by defaultImageUrl or the package's default image). If not specified or set to "initials" (the default), defaultImageUrl and gravatarDefault will be ignored.
+  - `fallbackType`: Determines the type of fallback to use when no image can be found via linked services (Gravatar included): "default image" (the default option, which will show either the image specified by defaultImageUrl, the package's default image, or a Gravatar default image) OR "initials" (show the user's initials).
   - `defaultImageUrl`: This will replace the included package default image URL ("packages/bengott_avatar/default.png"). It can be a relative path (e.g. "images/defaultAvatar.png").
   - `gravatarDefault`: Gravatar default option to use (overrides defaultImageUrl option and included package default image URL). Options are available at: https://secure.gravatar.com/site/implement/images/#default-image
+  - `emailHashProperty`: This property on the user object will be used for retrieving gravatars (useful when user emails are not published)
 
 Example usage:
-- To show initials when no avatar can be found via linked services, you don't need to define any options. This is the default functionality.
-  *** Note that if fallbackType is not specified or set to "initials" (the default), defaultImageUrl and gravatarDefault will be ignored.
+- To show initials when no avatar can be found via linked services:
+```javascript
+Avatar.options = {
+  fallbackType: "initials"
+};
+```
 
-- To show the included package default image:
+- To show the included package default image, you don't need to specify any options because this is the default functionality. However, you could specify it explicitly like so:
 ```javascript
 Avatar.options = {
   fallbackType: "default image"
@@ -62,7 +66,6 @@ Avatar.options = {
 - To show a custom default image:
 ```javascript
 Avatar.options = {
-  fallbackType: "default image",
   defaultImageUrl: "img/default-avatar.png" OR "http://example.com/default-avatar.png"
 };
 ```
@@ -71,7 +74,6 @@ Avatar.options = {
 - To show one of Gravatar's options (e.g. "identicon"):
 ```javascript
 Avatar.options = {
-  fallbackType: "default image",
   gravatarDefault: "identicon"
 };
 ```
