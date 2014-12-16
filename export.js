@@ -69,41 +69,41 @@ Avatar = {
   // Get the url of the user's avatar
   getUrl: function (user) {
 
-    if (typeof user == 'undefined') {
-      return;
-    }
-
-    var defaultUrl = Avatar.options.defaultImageUrl || 'packages/bengott_avatar/default.png';
-    // If it's a relative path (no '//' anywhere), complete the URL
-    if (defaultUrl.indexOf('//') === -1) {
-      // Strip starting slash if it exists
-      if (defaultUrl.charAt(0) === '/') defaultUrl = defaultUrl.slice(1);
-      // Then add the relative path to the server's base URL
-      defaultUrl = Meteor.absoluteUrl() + defaultUrl;
-    }
-
     var url = '';
-    var svc = getService(user);
-    if (svc === 'twitter') {
-      // use larger image (200x200 is smallest custom option)
-      url = user.services.twitter.profile_image_url.replace('_normal.', '_200x200.');
+    var defaultUrl, svc;
+
+    if (user) {
+      svc = getService(user);
+      if (svc === 'twitter') {
+        // use larger image (200x200 is smallest custom option)
+        url = user.services.twitter.profile_image_url.replace('_normal.', '_200x200.');
+      }
+      else if (svc === 'facebook') {
+        // use larger image (~200x200)
+        url = 'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=large';
+      }
+      else if (svc === 'google') {
+        url = user.services.google.picture;
+      }
+      else if (svc === 'github') {
+        url = 'http://avatars.githubusercontent.com/' + user.services.github.username + '?s=200';
+      }
+      else if (svc === 'instagram') {
+        url = user.services.instagram.profile_picture;
+      }
+      else if (svc === 'none') {
+        defaultUrl = Avatar.options.defaultImageUrl || 'packages/bengott_avatar/default.png';
+        // If it's a relative path (no '//' anywhere), complete the URL
+        if (defaultUrl.indexOf('//') === -1) {
+          // Strip starting slash if it exists
+          if (defaultUrl.charAt(0) === '/') defaultUrl = defaultUrl.slice(1);
+          // Then add the relative path to the server's base URL
+          defaultUrl = Meteor.absoluteUrl() + defaultUrl;
+        }
+        url = getGravatarUrl(user, defaultUrl);
+      }
     }
-    else if (svc === 'facebook') {
-      // use larger image (~200x200)
-      url = 'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=large';
-    }
-    else if (svc === 'google') {
-      url = user.services.google.picture;
-    }
-    else if (svc === 'github') {
-      url = 'http://avatars.githubusercontent.com/' + user.services.github.username + '?s=200';
-    }
-    else if (svc === 'instagram') {
-      url = user.services.instagram.profile_picture;
-    }
-    else if (svc === 'none') {
-      url = getGravatarUrl(user, defaultUrl);
-    }
+
     return url;
   }
 };
