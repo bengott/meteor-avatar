@@ -59,6 +59,10 @@ Avatar = {
   // Get the url of the user's avatar
   getUrl: function (user) {
 
+    if (typeof user == 'undefined') {
+      return;
+    }
+
     var defaultUrl = Avatar.options.defaultImageUrl || 'packages/bengott_avatar/default.png';
     // If it's a relative path (no '//' anywhere), complete the URL
     if (defaultUrl.indexOf('//') === -1) {
