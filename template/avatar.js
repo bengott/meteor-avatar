@@ -1,15 +1,16 @@
 Template.avatar.helpers({
 
   size: function () {
-    var valid = ['large', 'small'];
+    var valid = ['large', 'small', 'extra-small'];
     return _.contains(valid, this.size) ? 'avatar-' + this.size : '';
   },
 
   dimensions: function () {
     var value;
-    if      (this.size === 'small') value = 30;
-    else if (this.size === 'large') value = 80;
-    else                            value = 40;
+    if      (this.size === 'large')       value = 80;
+    else if (this.size === 'small')       value = 30;
+    else if (this.size === 'extra-small') value = 20;
+    else                                  value = 50;
 
     return { width: value, height: value };
   },

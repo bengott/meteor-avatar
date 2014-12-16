@@ -21,7 +21,8 @@ Usage
 In an HTML file:
 ```handlebars
 {{> avatar (user=<user> || userId=<userId>)
-           (size="large" || "small") (shape="rounded" || "circle")
+           (size="large" || "small" || "extra-small")
+           (shape="rounded" || "circle")
            (class="some custom classes")
            (initials="<initials>") (bgColor="<color>") (txtColor="<color>") }}
 ```
@@ -33,7 +34,7 @@ That may look like a lot of options, but they are all optional. Most of the time
 
 Optional template parameters:
   - `user` or `userId`: Either a user object or userId string, default avatar if omitted
-  - `size`: Size of the avatar, either "large" (80px) or "small" (30px), normal size (40px) if omitted
+  - `size`: Size of the avatar, either "large" (80px), "small" (30px), or "extra-small" (20px), medium/normal (50px) if omitted
   - `shape`: Used for CSS border-radius property, either "rounded" or "circle", square if omitted
   - `class`: Any custom CSS classes you'd like to define on the avatar container. The string is passed straight through to the `class` attribute on the `div` container element.
   - `initials`: Specify the initials to show for the initials avatar. The package automatically tries to determine the user's initials from profile data, but if defined, this param will override that.
