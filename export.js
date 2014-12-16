@@ -30,6 +30,7 @@ Avatar = {
   getInitials: function (user) {
 
     var initials = '';
+    var name = '';
     var parts = [];
 
     if (user && user.profile && user.profile.firstName) {
@@ -45,8 +46,15 @@ Avatar = {
         initials += user.profile.secondName.charAt(0).toUpperCase();
       }
     }
-    else if (user && user.profile && user.profile.name) {
-      parts = user.profile.name.split(' ');
+    else {
+      if (user && user.profile && user.profile.name) {
+        name = user.profile.name;
+      }
+      else if (user && user.username) {
+        name = user.username;
+      }
+
+      parts = name.split(' ');
       // Limit getInitials to first and last initial to avoid problems with
       // very long multi-part names (e.g. "Jose Manuel Garcia Galvez")
       initials = _.first(parts).charAt(0).toUpperCase();
