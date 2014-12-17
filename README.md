@@ -5,7 +5,7 @@ Consolidated Avatar Template Package for Meteor
 -----------------------------------------------
 
 ***BREAKING CHANGES:***
-The template parameters have been overhauled in version 0.5.0. The `Avatar.options` object is changing quite a bit in version 0.6.0 too. Basically, things are still in a state of flux (pre-1.0.0), so check for breaking changes when you update the package.
+The template parameters were overhauled in version 0.5.0. The `Avatar.options` object changed quite a bit in version 0.6.0 too. And make sure you note the `defaultType`/`fallbackType` changes in version 0.7.0. Basically, things are still in a state of flux (pre-1.0.0), so check for breaking changes and read the rest of the README carefully when you update the package.
 
 
 Installation
@@ -44,13 +44,16 @@ Global Configuration Options
 ----------------------------
 The package exports a global `Avatar` object which has a property named `options` (also an object). If defined (e.g. from a config file in your app), these options override default functionality.
 
-  - `fallbackType`: Determines the type of fallback to use when no image can be found via linked services (Gravatar included): "default image" (the default option, which will show either the image specified by defaultImageUrl, the package's default image, or a Gravatar default image) OR "initials" (show the user's initials).
+  - `fallbackType`: Determines the type of fallback to use when no image can be found via linked services (Gravatar included):
+    - "default image" (the default option, which will show either the image specified by defaultImageUrl, the package's default image, or a Gravatar default image)  
+      OR
+    - "initials" (show the user's initials)
   - `defaultImageUrl`: This will replace the included package default image URL ("packages/bengott_avatar/default.png"). It can be a relative path (e.g. "images/defaultAvatar.png").
   - `gravatarDefault`: Gravatar default option to use (overrides defaultImageUrl option and included package default image URL). Options are available at: https://secure.gravatar.com/site/implement/images/#default-image
   - `emailHashProperty`: This property on the user object will be used for retrieving gravatars (useful when user emails are not published)
 
 Example usage:
-- To show initials when no avatar can be found via linked services:
+- To show initials when no avatar image can be found via linked services:
 ```javascript
 Avatar.options = {
   fallbackType: "initials"
@@ -71,7 +74,7 @@ Avatar.options = {
 ```
   ***Note that Gravatar's default option requires a publicly accessible URL, so it won't work when your app is running on localhost and you're using either the included package default image or a custom defaultImageUrl that is a relative path. It will work fine once deployed though.***
 
-- To show one of Gravatar's options (e.g. "identicon"):
+- To show one of Gravatar's default options (e.g. "identicon"):
 ```javascript
 Avatar.options = {
   gravatarDefault: "identicon"
@@ -95,9 +98,10 @@ Given a user object or userId string, Avatar will retrieve the user's image with
   4. GitHub
   5. Instagram
   6. Gravatar, which will try to return an avatar matching the user's email address/hash. If it can't find one, then:
-    - If `Avatar.options.fallbackType` is "default image" and `Avatar.options.gravatarDefault` is valid, Gravatar will return a default image (e.g. an identicon).
-    - If `Avatar.options.fallbackType` is "default image" and `Avatar.options.gravatarDefault` is invalid or undefined, Gravatar will return either the image referenced by `Avatar.options.defaultImageUrl` or the included default image.
-    - Else, Gravatar returns a 404 (Not Found) response, and...
+    - If `Avatar.options.fallbackType` is "initials", Gravatar returns a 404 (Not Found) response.
+    - Else,
+      - If `Avatar.options.gravatarDefault` is valid, Gravatar will return a default image (e.g. an identicon).
+      - If `Avatar.options.gravatarDefault` is invalid or undefined, Gravatar will return either the image referenced by `Avatar.options.defaultImageUrl` or the included default image.
   7. If no image can be retrieved, the user's initials will be shown.
   8. More to come...
 
