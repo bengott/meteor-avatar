@@ -39,7 +39,7 @@ getGravatarUrl = function (user, defaultUrl) {
 // Get the user's email address or (if the emailHashProperty is defined) hash
 getEmailOrHash = function (user) {
   var emailOrHash;
-  if (Avatar.options.emailHashProperty) {
+  if (user && Avatar.options.emailHashProperty && user[Avatar.options.emailHashProperty]) {
     emailOrHash = user[Avatar.options.emailHashProperty];
   }
   else if (user && user.emails) {
