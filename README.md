@@ -89,6 +89,11 @@ Avatar.options = {
 };
 ```
 
+Test App
+--------
+The app I use to test Avatar is available here:  
+https://github.com/bengott/avatar-tester
+
 How the package chooses an avatar
 ---------------------------------
 Given a user object or userId string, Avatar will retrieve the user's image with the following priority:
