@@ -8,7 +8,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom(['METEOR@0.9.4.1', 'METEOR@1.0.1']);
   api.use(['templating', 'stylus', 'reactive-var'], ['client']);
-  api.use(['underscore', 'jparker:gravatar@0.3.0'], ['client', 'server']);
+  api.use(['underscore', 'jparker:gravatar@0.3.1'], ['client', 'server']);
   api.addFiles(
     [
       'template/avatar.html',
