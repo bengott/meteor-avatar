@@ -18,7 +18,7 @@ Package.onUse(function(api) {
     ['client']
   );
   api.addFiles(
-    [a
+    [
       'export.js',
       'helpers.js',
       'default.png'
