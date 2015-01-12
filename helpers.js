@@ -29,7 +29,7 @@ getGravatarUrl = function (user, defaultUrl) {
     // defaultImageUrl that is a relative path (e.g. 'images/defaultAvatar.png').
     default: gravatarDefault,
     size: 200, // use 200x200 like twitter and facebook above (might be useful later)
-    secure: Meteor.absoluteUrl().slice(0,6) === 'https:'
+    secure: true
   };
 
   var emailOrHash = getEmailOrHash(user);
