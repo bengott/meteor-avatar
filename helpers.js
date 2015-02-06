@@ -1,7 +1,9 @@
 // Get the account service to use for the user's avatar
 // Priority: Twitter > Facebook > Google > GitHub > Instagram
 getService = function (user) {
-  if      (user && user.services && user.services.twitter)   { return 'twitter'; }
+  var profileProp = Avatar.options.profilePictureProperty;
+  if      (profileProp && user && user.profile && user.profile[profileProp]) { return 'profile'; }
+  else if (user && user.services && user.services.twitter)   { return 'twitter'; }
   else if (user && user.services && user.services.facebook)  { return 'facebook'; }
   else if (user && user.services && user.services.google)    { return 'google'; }
   else if (user && user.services && user.services.github)    { return 'github'; }
