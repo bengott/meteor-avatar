@@ -123,9 +123,10 @@ UsersCollection.find({ /* query */ }, {
 });
 ```
 
-Fields used to get avatar image (one per service):
+Fields used to get avatar image (one per service, two for twitter):
 ```javascript
 "services.twitter.profile_image_url"
+"services.twitter.profile_image_url_https"
 "services.facebook.id"
 "services.google.picture"
 "services.github.username"
