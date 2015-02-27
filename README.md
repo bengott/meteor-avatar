@@ -4,7 +4,12 @@
 Consolidated Avatar Template Package for Meteor
 -----------------------------------------------
 
-***BREAKING CHANGES:***
+ANNOUNCEMENT
+------------
+I realize that I haven't been keeping up with issues and pull requests very well recently, and now there's a 2-month backlog. Part of the reason is that moving to California and starting a new job didn't leave me with much time for Avatar. On top of that, many of the issues/PRs overlap with functionality I planned to build anyway, so I put them off in order to avoid duplicating effort. Looking back now, that may have been shortsighted. I'm going to do my best to sort through the outstanding issues and provide support for features that users have been requesting (both by merging PRs and by writing new code). Expect changes soon! -Ben
+
+BREAKING CHANGES
+----------------
 The template parameters were overhauled in version 0.5.0. The `Avatar.options` object changed quite a bit in version 0.6.0 too. And make sure you note the `defaultType`/`fallbackType` changes in version 0.7.0. Basically, things are still in a state of flux (pre-1.0.0), so check for breaking changes and read the rest of the README carefully when you update the package.
 
 
