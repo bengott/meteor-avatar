@@ -79,16 +79,11 @@ Avatar = {
       svc = getService(user);
       if (svc === 'twitter') {
         // use larger image (200x200 is smallest custom option)
-        if (Meteor.isClient) {
-          url = window.location.protocol === "https:" ? user.services.twitter.profile_image_url_https : user.services.twitter.profile_image_url;
-        } else {
-          url = user.services.twitter.profile_image_url_https;
-        }
-        url = url.replace('_normal.', '_200x200.');
+        url = user.services.twitter.profile_image_url_https.replace('_normal.', '_200x200.');
       }
       else if (svc === 'facebook') {
         // use larger image (~200x200)
-        url = 'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=large';
+        url = 'https://graph.facebook.com/' + user.services.facebook.id + '/picture?type=large';
       }
       else if (svc === 'google') {
         url = user.services.google.picture;
