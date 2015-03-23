@@ -1,12 +1,14 @@
 // Get the account service to use for the user's avatar
 // Priority: Twitter > Facebook > Google > GitHub > Instagram
 getService = function (user) {
-  if      (user && user.services && user.services.twitter)   { return 'twitter'; }
-  else if (user && user.services && user.services.facebook)  { return 'facebook'; }
-  else if (user && user.services && user.services.google)    { return 'google'; }
-  else if (user && user.services && user.services.github)    { return 'github'; }
-  else if (user && user.services && user.services.instagram) { return 'instagram'; }
-  else                                                       { return 'none'; }
+  var services = user && user.services;
+
+  if      (services && services.twitter)   { return 'twitter'; }
+  else if (services && services.facebook)  { return 'facebook'; }
+  else if (services && services.google)    { return 'google'; }
+  else if (services && services.github)    { return 'github'; }
+  else if (services && services.instagram) { return 'instagram'; }
+  else                                     { return 'none'; }
 };
 
 getGravatarUrl = function (user, defaultUrl) {
