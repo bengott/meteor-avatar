@@ -3,10 +3,17 @@
 .avatar
   height 50px
   width 50px
+  position relative
 
   .avatar-image, .avatar-initials
     height 100%
     width 100%
+    position absolute
+    top 0px
+    left 0px
+
+  .avatar-image
+    z-index 10
 
   .avatar-initials
     display block
@@ -17,6 +24,7 @@
     line-height 50px
     font-family "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif
     text-align center
+    z-index 1
 
 .avatar-large
   height 80px
