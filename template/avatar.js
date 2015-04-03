@@ -20,7 +20,7 @@ Template.avatar.helpers({
     return _.contains(valid, this.shape) ? 'avatar-' + this.shape : '';
   },
 
-  hideClass: function () {
+  hideClass: function () { // NOT USED ANYMORE
     // If image loaded successfully, hide initials and show image.
     // Otherwise, hide image and show initials.
     var hasImage = Template.instance().hasImage.get();
