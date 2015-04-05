@@ -20,13 +20,6 @@ Template.avatar.helpers({
     return _.contains(valid, this.shape) ? 'avatar-' + this.shape : '';
   },
 
-  hideClass: function () { // NOT USED ANYMORE
-    // If image loaded successfully, hide initials and show image.
-    // Otherwise, hide image and show initials.
-    var hasImage = Template.instance().hasImage.get();
-    return hasImage ? 'avatar-hide-initials' : 'avatar-hide-image';
-  },
-
   class: function () { return this.class; },
 
   imageUrl: function () {
@@ -47,15 +40,3 @@ Template.avatar.helpers({
   }
 
 });
-
-// Use a reactive variable to store image load success/failure
-Template.avatar.created = function () {
-  this.hasImage = new ReactiveVar(true);
-};
-
-// Determine if image loaded successfully and set hasImage variable
-Template.avatar.rendered = function () {
-  var self = this;
-  this.$('img').on('error', function () { self.hasImage.set(false); })
-               .on('load',  function () { self.hasImage.set(true); });
-};
