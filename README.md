@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/bengott/images/master/avatar-logo.png)
+![logo](https://s3.amazonaws.com/f.cl.ly/items/1u233B1J332D393D2m2j/avatar-logo.png)
 ================================================================================
 
 Consolidated Avatar Template Package for Meteor
@@ -6,7 +6,8 @@ Consolidated Avatar Template Package for Meteor
 
 ANNOUNCEMENT
 ------------
-I realize that I haven't been keeping up with issues and pull requests very well recently, and now there's a 2-month backlog. Part of the reason is that moving to California and starting a new job didn't leave me with much time for Avatar. On top of that, many of the issues/PRs overlap with functionality I planned to build anyway, so I put them off in order to avoid duplicating effort. Looking back now, that may have been shortsighted. I'm going to do my best to sort through the outstanding issues and provide support for features that users have been requesting (both by merging PRs and by writing new code). Expect changes soon! -Ben
+
+I've forked @bengott's Avatar package to take over maintenance until he has time to come back to it. -Sacha
 
 BREAKING CHANGES
 ----------------
