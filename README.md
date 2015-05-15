@@ -51,12 +51,13 @@ Global Configuration Options
 The package exports a global `Avatar` object which has a property named `options` (also an object). If defined (e.g. from a config file in your app), these options override default functionality.
 
   - `fallbackType`: Determines the type of fallback to use when no image can be found via linked services (Gravatar included):
-    - "default image" (the default option, which will show either the image specified by defaultImageUrl, the package's default image, or a Gravatar default image)  
+    - "default image" (the default option, which will show either the image specified by defaultImageUrl, the package's default image, or a Gravatar default image).
       OR
     - "initials" (show the user's initials)
   - `defaultImageUrl`: This will replace the included package default image URL ("packages/bengott_avatar/default.png"). It can be a relative path (e.g. "images/defaultAvatar.png").
-  - `gravatarDefault`: Gravatar default option to use (overrides defaultImageUrl option and included package default image URL). Options are available at: https://secure.gravatar.com/site/implement/images/#default-image
-  - `emailHashProperty`: This property on the user object will be used for retrieving gravatars (useful when user emails are not published)
+  - `gravatarDefault`: Gravatar default option to use (overrides defaultImageUrl option and included package default image URL). Options are available [here](https://secure.gravatar.com/site/implement/images/#default-image).
+  - `emailHashProperty`: This property on the user object will be used for retrieving gravatars (useful when user emails are not published).
+  - `customImageProperty`: If you're storing images URLs in a property on the user object, you can specify it here. 
 
 Example usage:
 - To show initials when no avatar image can be found via linked services:

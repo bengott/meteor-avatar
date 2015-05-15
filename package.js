@@ -1,8 +1,8 @@
 Package.describe({
   name: "utilities:avatar",
   summary: "Consolidated user avatar template (twitter, facebook, gravatar, etc.)",
-  version: "0.7.7",
-  git: "https://github.com/sachag/meteor-avatar"
+  version: "0.7.9",
+  git: "https://github.com/bengott/meteor-avatar"
 });
 
 Package.onUse(function(api) {
@@ -19,6 +19,7 @@ Package.onUse(function(api) {
   );
   api.addFiles(
     [
+      'utils.js',
       'export.js',
       'helpers.js',
       'default.png'
