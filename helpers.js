@@ -1,16 +1,10 @@
-// see http://stackoverflow.com/questions/8051975/access-object-child-properties-using-a-dot-notation-string
-var getDescendantProp = function (obj, desc) {
-  var arr = desc.split(".");
-  while(arr.length && (obj = obj[arr.shift()]));
-  return obj;
-}
-
 // Get the account service to use for the user's avatar
 // Priority: Twitter > Facebook > Google > GitHub > Instagram
 getService = function (user) {
   var services = user && user.services;
-
-  if      (services && services.twitter)   { return 'twitter'; }
+  var customProp = user && Avatar.options.customImageProperty;
+  if      (customProp && getDescendantProp(user, customProp)) { return 'custom'; }
+  else if (services && services.twitter)   { return 'twitter'; }
   else if (services && services.facebook)  { return 'facebook'; }
   else if (services && services.google)    { return 'google'; }
   else if (services && services.github)    { return 'github'; }
