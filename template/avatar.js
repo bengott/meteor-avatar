@@ -24,7 +24,11 @@ Template.avatar.helpers({
 
   imageUrl: function () {
     var user = this.user ? this.user : Meteor.users.findOne(this.userId);
-    return Avatar.getUrl(user);
+    var url = Avatar.getUrl(user);
+    if (url && url.trim() !== '' && Template.instance().firstNode) {
+      Template.instance().find('img').style.removeProperty('display');
+    }
+    return url;
   },
 
   initialsCss: function () {
