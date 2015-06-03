@@ -1,5 +1,5 @@
 // Get the account service to use for the user's avatar
-// Priority: Twitter > Facebook > Google > GitHub > Instagram
+// Priority: Twitter > Facebook > Google > GitHub > Instagram > Linkedin
 getService = function (user) {
   var services = user && user.services;
   var customProp = user && Avatar.options.customImageProperty;
@@ -9,6 +9,7 @@ getService = function (user) {
   else if (services && services.google)    { return 'google'; }
   else if (services && services.github)    { return 'github'; }
   else if (services && services.instagram) { return 'instagram'; }
+  else if (services && services.linkedin)  { return 'linkedin'; }
   else                                     { return 'none'; }
 };
 
