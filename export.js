@@ -100,7 +100,7 @@ Avatar = {
       else if (svc === 'instagram') {
         url = user.services.instagram.profile_picture;
       }
-      else if (svc === 'instagram') {
+      else if (svc === 'linkedin') {
         url = user.services.linkedin.pictureUrl;
       }
       else if (svc === "custom") {
