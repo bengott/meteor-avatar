@@ -138,6 +138,7 @@ Fields used to get avatar image (one per service):
 "services.google.picture"
 "services.github.username"
 "services.instagram.profile_picture"
+"services.linkedin.pictureUrl"
 ```
 
 Fields used to form initials (if needed):
