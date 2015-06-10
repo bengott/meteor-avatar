@@ -100,6 +100,9 @@ Avatar = {
       else if (svc === 'instagram') {
         url = user.services.instagram.profile_picture;
       }
+      else if (svc === 'linkedin') {
+        url = user.services.linkedin.pictureUrl;
+      }
       else if (svc === "custom") {
         url = getDescendantProp(user, Avatar.options.customImageProperty);
       }

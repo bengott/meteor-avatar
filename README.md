@@ -109,13 +109,14 @@ Given a user object or userId string, Avatar will retrieve the user's image with
   3. Google
   4. GitHub
   5. Instagram
-  6. Gravatar, which will try to return an avatar matching the user's email address/hash. If it can't find one, then:
+  6. Linkedin
+  7. Gravatar, which will try to return an avatar matching the user's email address/hash. If it can't find one, then:
     - If `Avatar.options.fallbackType` is "initials", Gravatar returns a 404 (Not Found) response.
     - Else,
       - If `Avatar.options.gravatarDefault` is valid, Gravatar will return a default image (e.g. an identicon).
       - If `Avatar.options.gravatarDefault` is invalid or undefined, Gravatar will return either the image referenced by `Avatar.options.defaultImageUrl` or the included default image.
-  7. If no image can be retrieved, the user's initials will be shown.
-  8. More to come...
+  8. If no image can be retrieved, the user's initials will be shown.
+  9. More to come...
 
 **Required Fields/Properties on the User Object**
 
