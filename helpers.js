@@ -1,16 +1,11 @@
 // Get the account service to use for the user's avatar
 // Priority: Twitter > Facebook > Google > GitHub > Instagram > Linkedin
 getService = function (user) {
-  var services = user && user.services;
+  var services = user && user.services || {};
   var customProp = user && Avatar.options.customImageProperty;
-  if      (customProp && getDescendantProp(user, customProp)) { return 'custom'; }
-  else if (services && services.twitter)   { return 'twitter'; }
-  else if (services && services.facebook)  { return 'facebook'; }
-  else if (services && services.google)    { return 'google'; }
-  else if (services && services.github)    { return 'github'; }
-  else if (services && services.instagram) { return 'instagram'; }
-  else if (services && services.linkedin)  { return 'linkedin'; }
-  else                                     { return 'none'; }
+  if (customProp && getDescendantProp(user, customProp)) { return 'custom'; }
+  var service = _.find(['twitter', 'facebook', 'google', 'github', 'instagram', 'linkedin'], function(s) { return !!services[s]; });
+  return service || 'none';
 };
 
 getGravatarUrl = function (user, defaultUrl) {
