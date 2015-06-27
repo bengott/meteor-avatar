@@ -101,14 +101,14 @@ Will assign CSS class names prefixed by 'foo', like below:
 <div class="foo foo-small foo-circle">
     <img class="foo-image" src="path_to_your_avatar" alt="avatar" onerror="this.style.display='none';" width="30" height="30">
     <span class="foo-initials">A</span>
-  </div>
+</div>
 ```
 If a `cssClassPrefix` is not set, then the default prefix 'avatar' is used for CSS class names in the rendered the HTML:
 ```html
 <div class="avatar avatar-small avatar-circle">
     <img class="avatar-image" src="path_to_your_avatar" alt="avatar" onerror="this.style.display='none';" width="30" height="30">
     <span class="avatar-initials">A</span>
-  </div>
+</div>
 ```
    ***Note that setting a custom CSS prefix will break the styling. Please write your own styles if you choose to set a custom prefix. ***
 
