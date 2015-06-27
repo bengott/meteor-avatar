@@ -94,8 +94,9 @@ Avatar.options = {
 ```javascript
 Avatar.options = {
   cssClassPrefix: 'foo'
-};```
-   Will assign CSS class names prefixed by 'foo', like below:
+};
+```
+Will assign CSS class names prefixed by 'foo', like below:
 ```html
 <div class="foo foo-small foo-circle">
     <img class="foo-image" src="path_to_your_avatar" alt="avatar" onerror="this.style.display='none';" width="30" height="30">
