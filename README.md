@@ -95,7 +95,7 @@ Avatar.options = {
 Avatar.options = {
   cssClassPrefix: 'foo'
 };```
-Will assign CSS class names prefixed by 'foo', like below:
+   Will assign CSS class names prefixed by 'foo', like below:
 ```html
 <div class="foo foo-small foo-circle">
     <img class="foo-image" src="path_to_your_avatar" alt="avatar" onerror="this.style.display='none';" width="30" height="30">
@@ -109,7 +109,7 @@ If a `cssClassPrefix` is not set, then the default prefix 'avatar' is used for C
     <span class="avatar-initials">A</span>
   </div>
 ```
-***Note that setting a custom CSS prefix will break the styling. Please write your own styles if you choose to set a custom prefix. ***
+   ***Note that setting a custom CSS prefix will break the styling. Please write your own styles if you choose to set a custom prefix. ***
 
 - And if your app does not publish the user.emails object/property but publishes an email hash property instead, you can specify it like this (the Gravatar package generates a hash internally when you give it an email too; this just allows you to decouple those two steps so as not to make all your users' emails public):
 ```javascript
