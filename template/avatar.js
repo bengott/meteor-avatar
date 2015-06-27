@@ -1,8 +1,12 @@
 Template.avatar.helpers({
 
+  cssClassPrefix: function () {
+    return Avatar.getCssClassPrefix();
+  },
+
   size: function () {
     var valid = ['large', 'small', 'extra-small'];
-    return _.contains(valid, this.size) ? 'avatar-' + this.size : '';
+    return _.contains(valid, this.size) ? Avatar.getCssClassPrefix() +'-' + this.size : '';
   },
 
   dimensions: function () {
@@ -17,7 +21,7 @@ Template.avatar.helpers({
 
   shape: function () {
     var valid = ['rounded', 'circle'];
-    return _.contains(valid, this.shape) ? 'avatar-' + this.shape : '';
+    return _.contains(valid, this.shape) ? Avatar.getCssClassPrefix() + '-' + this.shape : '';
   },
 
   class: function () { return this.class; },
