@@ -32,7 +32,17 @@ Avatar = {
 
     // This property on the user object will be used for retrieving gravatars
     // (useful when user emails are not published).
-    emailHashProperty: ''
+    emailHashProperty: '',
+
+    // This property is used to prefix the CSS classes of the DOM elements.
+    // If no value is set, then the default CSS class assigned to all DOM elements are prefixed with 'avatar' as default.
+    // If a value is set to, 'foo' for example, the resulting CSS classes are prefixed with 'foo'.
+    cssClassPrefix: ''
+  },
+
+  // Returns the cssClassPrefix property from options
+  getCssClassPrefix: function () {
+    return (Avatar.options.cssClassPrefix)? Avatar.options.cssClassPrefix: 'avatar';
   },
 
   // Get the initials of the user
